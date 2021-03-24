@@ -31,7 +31,7 @@ def solution(answers):
 
     return list(map(lambda x: x + 1, answer))
 
-
+##
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     answer=[1,3,2,4,2] # 0,1,3,3,5,6. 3
