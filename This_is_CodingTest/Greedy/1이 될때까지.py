@@ -11,4 +11,3 @@ if __name__ == '__main__':
         result = max(min_val,result)
 
     print(result)
-#
