@@ -3,11 +3,23 @@ if __name__ == '__main__':
 
     n,m = map(int,input().split())
 
-    result=0
+    cnt=0
 
-    for i in range(n):
-        data=list(map(int,input().split()))
-        min_val = min(data)
-        result = max(min_val,result)
+    # while n!=1:
+    #     if n%m == 0:
+    #         n/=m
+    #         cnt+=1
+    #     else:
+    #         n-=1
+    #         cnt += 1
 
-    print(result)
+    while True:
+        target = (n//m)*m
+        cnt+=(n-target)
+        n=target
+        if n<m:
+            break
+        cnt+=1
+        n//=m
+
+    print(cnt)
