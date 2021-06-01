@@ -22,5 +22,6 @@ if __name__ == '__main__':
         cnt+=1
         n//=m
 
+    cnt+=(n-1)
     print(cnt)
 #
