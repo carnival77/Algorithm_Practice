@@ -52,4 +52,4 @@ while q:
                 board[nx][ny] = virus
                 q.append((board[nx][ny],(s+1),nx,ny))
 
-print(board[x-1][y-1])
+print(board[tg_x-1][tg_y-1])
