@@ -54,14 +54,7 @@ def watch(x, y, direction):
 # 장애물 설치 이후에, 한 명이라도 학생이 감지되는지 검사
 def process():
     # 모든 선생의 위치를 하나씩 확인
-
-    print("teachers")
-    print(teachers)
-
     for x, y in teachers:
-
-        print("x,y")
-        print(x,y)
 
         # 4가지 방향으로 학생을 감지할 수 있는지 확인
         for i in range(4):
@@ -75,14 +68,8 @@ find = False # 학생이 한 명도 감지되지 않도록 설치할 수 있는�
 # 빈 공간에서 3개를 뽑는 모든 조합을 확인
 for data in combinations(spaces, 3):
 
-    print("data")
-    print(data)
-
     # 장애물들을 설치해보기
     for x, y in data:
-
-        print("x,y")
-        print(x,y)
 
         board[x][y] = 'O'
     # 학생이 한 명도 감지되지 않는 경우
