@@ -26,11 +26,11 @@ def dijstra(start):
         if dist > distance[now]:
             continue
 
-        for near_node in graph[now]:
-            cost = dist + near_node[1]
-            if cost < distance[near_node[0]]:
-                distance[near_node[0]] = cost
-                heapq.heappush(q,(cost,near_node[0]))
+        for near_node_num, near_node_cost in graph[now]:
+            cost = dist + near_node_cost
+            if cost < distance[near_node_num]:
+                distance[near_node_num] = cost
+                heapq.heappush(q,(cost,near_node_num))
 
 dijstra(start)
 
