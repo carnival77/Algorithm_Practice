@@ -1,3 +1,16 @@
+# def binary_search(arr,tg,start,end):
+#     while start<=end:
+#         mid = (start+end)//2
+#         if arr[mid] == tg:
+#             return mid
+#         elif arr[mid] < tg:
+#             start = mid + 1
+#         else:
+#             end = mid - 1
+#     return None
+
+
+
 def binary_search(arr,tg,start,end):
     while start <= end :
         mid = (start+end)//2
@@ -15,6 +28,8 @@ arr= list(map(int,input().split()))
 
 result = binary_search(arr,target,0,n-1)
 print(result+1)
+
+
 
 
 # def binary_search(arr,target,start,end):
