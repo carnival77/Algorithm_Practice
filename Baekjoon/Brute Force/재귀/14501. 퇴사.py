@@ -21,3 +21,4 @@ def recursive(i,sum,n,t_arr,p_arr):
 
 recursive(0,0,n,t_arr,p_arr)
 print(p)
+##
