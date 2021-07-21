@@ -13,22 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\브루트포스">
+      <UniqueIdentifier>{ab6ec160-adf7-4d09-9685-56bdc0c5ce99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\브루트포스\순열">
+      <UniqueIdentifier>{abb9c000-8482-48b4-a050-81ba3c2753f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\브루트포스\재귀">
+      <UniqueIdentifier>{11e5e2a4-a792-4ed5-818d-1504f4b586e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="14889. 스타트와 링크.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="10972.다음순열.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="1248.맞춰봐.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\브루트포스\순열</Filter>
     </ClCompile>
     <ClCompile Include="10972.다음순열_next_permutation.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\브루트포스\순열</Filter>
     </ClCompile>
     <ClCompile Include="10973.이전순열.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\브루트포스\순열</Filter>
     </ClCompile>
+    <ClCompile Include="1248.맞춰봐.cpp">
+      <Filter>소스 파일\브루트포스\재귀</Filter>
+    </ClCompile>
+    <ClCompile Include="14889. 스타트와 링크.cpp">
+      <Filter>소스 파일\브루트포스\재귀</Filter>
+    </ClCompile>
+    <ClCompile Include="10974.모든순열.cpp">
+      <Filter>소스 파일\브루트포스\순열</Filter>
+    </ClCompile>
+    <ClCompile Include="10819.차이를최대로.cpp">
+      <Filter>소스 파일\브루트포스\순열</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="10972.이전순열_prev_permutation.cpp">
+      <Filter>소스 파일\브루트포스\순열</Filter>
+    </None>
   </ItemGroup>
 </Project>
