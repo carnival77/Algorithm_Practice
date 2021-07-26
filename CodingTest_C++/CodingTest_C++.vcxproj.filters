@@ -48,6 +48,9 @@
     <ClCompile Include="10971.외판원순회2.cpp">
       <Filter>소스 파일\브루트포스\순열</Filter>
     </ClCompile>
+    <ClCompile Include="6603.로또.cpp">
+      <Filter>소스 파일\브루트포스\순열</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="10972.이전순열_prev_permutation.cpp">
