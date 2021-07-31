@@ -25,7 +25,7 @@ int main() {
 		vector<int> first, second;
 		// 두 팀에 인원 삽입
 		// n명 중 이번 i 이진수 경우의 수에 선택된 사람이 있는 지 n까지의 for문으로 탐색하여, 있다면 first에, 없다면 second에 넣는다.
-		// 가령  i : 101(2)라면, (0번, 2번)의 사람들만 first에 삽입되고 나머지 (1번, 3번) 의 사람들은 second에 삽입된다.
+		// 가령  i : 1010(2)라면, (0번, 2번)의 사람들만 first에 삽입되고 나머지 (1번, 3번) 의 사람들은 second에 삽입된다.
 		for (int k = 0; k < n; k++) {
 			if (i & (1 << k)) first.push_back(k);
 			else { second.push_back(k); }
