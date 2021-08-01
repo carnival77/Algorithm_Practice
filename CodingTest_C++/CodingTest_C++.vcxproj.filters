@@ -75,6 +75,9 @@
     <ClCompile Include="1260.DFS와 BFS.cpp">
       <Filter>소스 파일\5. 큐와 그래프</Filter>
     </ClCompile>
+    <ClCompile Include="11724.연결 요소의 개수.cpp">
+      <Filter>소스 파일\5. 큐와 그래프</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="10972.이전순열_prev_permutation.cpp">

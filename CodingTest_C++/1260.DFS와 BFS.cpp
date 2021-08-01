@@ -44,7 +44,7 @@ int main() {
 		graph[b].push_back(a);
 	}
 	memset(check, false, sizeof(check));
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < n; i++) { 
 		sort(graph[i].begin(), graph[i].end());
 	}
 	dfs(start);
