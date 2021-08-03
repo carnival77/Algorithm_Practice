@@ -25,6 +25,7 @@ int main() {
 		graph[v].push_back(u);
 	}
 	memset(visit, false, sizeof(visit));
+	// 노드 번호가 1부터 삽입되었으니, 1부터 탐색해야한다! 그리고 v번까지 노드가 있으니, 탐색 범위는 i <= n 이다.
 	for (int i = 1; i <= n; i++) {
 		if (!visit[i]) {
 			ans += 1;
