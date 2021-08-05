@@ -1,53 +1,31 @@
-from collections import deque
-
-n = int(input())
-board=[]
-
-for i in range(n):
-    board.append(list(map(int,input())))
-
-index=2
-ans=[]
-num=0
-
-dx=[-1,1,0,0]
-dy=[0,0,-1,1]
-
-def bfs(start,index):
-    q=deque()
-    q.append(start)
-    global num
-
+from collections import deque, Counter
+from functools import reduce
+dx = [0,0,1,-1]
+dy = [1,-1,0,0]
+def bfs(x, y, cnt):
+    q = deque()
+    q.append((x,y))
+    group[x][y] = cnt
     while q:
-        x,y=q.popleft()
-
-        for i in range(4):
-            nx=x+dx[i]
-            ny=y+dy[i]
-
-            if nx<0 or ny<0 or nx>n-1 or ny>n-1:
-                continue
-            if board[nx][ny] == 0:
-                continue
-            if board[nx][ny] == 1:
-                board[nx][ny] = index
-                num+=1
-                q.append((nx,ny))
-
-    return False
-
-total=0
-
+        x, y = q.popleft()
+        for k in range(4):
+            nx, ny = x+dx[k], y+dy[k]
+            if 0 <= nx < n and 0 <= ny < n:
+                if a[nx][ny] == 1 and group[nx][ny] == 0:
+                    q.append((nx,ny))
+                    group[nx][ny] = cnt
+n = int(input())
+a = [list(map(int,list(input()))) for _ in range(n)]
+group = [[0]*n for _ in range(n)]
+cnt = 0
 for i in range(n):
     for j in range(n):
-        if(board[i][j] == 1):
-            if(bfs((i,j),index)):
-                total+=1
-            index+=1
-            ans.append(num)
-            num=0
+        if a[i][j] == 1 and group[i][j] == 0:
+            cnt += 1
+            bfs(i, j, cnt)
 
-print(total)
-ans.sort()
-for i in ans:
-    print(i)
+ans = reduce(lambda x,y : x+y, group)
+ans = [x for x in ans if x > 0]
+ans = sorted(list(Counter(ans).values()))
+print(cnt)
+print('\n'.join(map(str,ans)))
