@@ -87,6 +87,9 @@
     <ClCompile Include="1697.숨바꼭질.cpp">
       <Filter>소스 파일\5-2. BFS</Filter>
     </ClCompile>
+    <ClCompile Include="13913.숨바꼭질 4.cpp">
+      <Filter>소스 파일\5-2. BFS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="10972.이전순열_prev_permutation.cpp">
