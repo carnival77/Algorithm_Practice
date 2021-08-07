@@ -25,8 +25,11 @@
     <Filter Include="소스 파일\3. 브루트포스\비트마스크">
       <UniqueIdentifier>{84ad5be9-a829-4e0f-b6b9-821577c442f6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\5. 큐와 그래프">
+    <Filter Include="소스 파일\5-1. 큐와 그래프">
       <UniqueIdentifier>{c993682b-ee24-4284-b749-209db9f51494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\5-2. BFS">
+      <UniqueIdentifier>{fc7e7497-8660-4017-8ab1-c2d5714550d4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -64,22 +67,25 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="108453.큐.cpp">
-      <Filter>소스 파일\5. 큐와 그래프</Filter>
+      <Filter>소스 파일\5-1. 큐와 그래프</Filter>
     </ClCompile>
     <ClCompile Include="10866.덱.cpp">
-      <Filter>소스 파일\5. 큐와 그래프</Filter>
+      <Filter>소스 파일\5-1. 큐와 그래프</Filter>
     </ClCompile>
     <ClCompile Include="13023. ABCDE.cpp">
-      <Filter>소스 파일\5. 큐와 그래프</Filter>
+      <Filter>소스 파일\5-1. 큐와 그래프</Filter>
     </ClCompile>
     <ClCompile Include="1260.DFS와 BFS.cpp">
-      <Filter>소스 파일\5. 큐와 그래프</Filter>
+      <Filter>소스 파일\5-1. 큐와 그래프</Filter>
     </ClCompile>
     <ClCompile Include="11724.연결 요소의 개수.cpp">
-      <Filter>소스 파일\5. 큐와 그래프</Filter>
+      <Filter>소스 파일\5-1. 큐와 그래프</Filter>
     </ClCompile>
     <ClCompile Include="1707.이분 그래프.cpp">
-      <Filter>소스 파일\5. 큐와 그래프</Filter>
+      <Filter>소스 파일\5-1. 큐와 그래프</Filter>
+    </ClCompile>
+    <ClCompile Include="1697.숨바꼭질.cpp">
+      <Filter>소스 파일\5-2. BFS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
