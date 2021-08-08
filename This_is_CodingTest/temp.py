@@ -1,30 +1,24 @@
 from collections import deque
-dx = [0,0,1,-1]
-dy = [1,-1,0,0]
-m, n = map(int,input().split())
-a = [list(map(int,input().split())) for _ in range(n)]
+n = int(input())
+dist = [[-1]*(n+1) for _ in range(n+1)]
 q = deque()
-dist = [[-1]*m for _ in range(n)]
-for i in range(n):
-    for j in range(m):
-        if a[i][j] == 1:
-            dist[i][j] = 0
-            q.append((i,j))
+q.append((1,0))
+dist[1][0] = 0
 while q:
-    x, y = q.popleft()
-    for k in range(4):
-        nx, ny = x+dx[k], y+dy[k]
-        if 0 <= nx < n and 0 <= ny < m:
-            if a[nx][ny] == 0 and dist[nx][ny] == -1:
-                q.append((nx,ny))
-                dist[nx][ny] = dist[x][y] + 1
-
-for i in range(n):
-    print(dist[i])
-
-ans = max([max(row) for row in dist])
-for i in range(n):
-    for j in range(m):
-        if a[i][j] == 0 and dist[i][j] == -1:
-            ans = -1
+    s, c = q.popleft()
+    if dist[s][s] == -1:
+        dist[s][s] = dist[s][c] + 1
+        q.append((s,s))
+    if s+c <= n and dist[s+c][c] == -1:
+        dist[s+c][c] = dist[s][c] + 1
+        q.append((s+c,c))
+    if s-1 >= 0 and dist[s-1][c] == -1:
+        dist[s-1][c] = dist[s][c] + 1
+        q.append((s-1,c))
+ans = -1
+print(dist[n])
+for i in range(n+1):
+    if dist[n][i] != -1:
+        if ans == -1 or ans > dist[n][i]:
+            ans = dist[n][i]
 print(ans)
