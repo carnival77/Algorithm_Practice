@@ -50,7 +50,7 @@ int main() {
 				q.push(next);
 			}
 		}
-		if (now + 1 <= 200000) {
+		if (now + 1 < 200000) {
 			next = now + 1;
 			if (check[next] == false) {
 				check[next] = true;
@@ -59,7 +59,7 @@ int main() {
 				q.push(next);
 			}
 		}
-		if (2 * now <= 200000) {
+		if (2 * now < 200000) {
 			next = 2 * now;
 			if (check[next] == false) {
 				check[next] = true;
