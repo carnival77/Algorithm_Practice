@@ -1,48 +1,44 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <cstdio>
+#include <deque>
 using namespace std;
-bool a[2000][2000];
-vector<int> g[2000];
-vector<pair<int, int>> edges;
+int d[555][555];
+int a[555][555];
+int n, m;
+int dx[] = { 0,0,1,-1 };
+int dy[] = { 1,-1,0,0 };
 int main() {
-    int n, m;
-    cin >> n >> m;
-    for (int i = 0; i < m; i++) {
-        int from, to;
-        cin >> from >> to;
-        edges.push_back({ from, to });
-        edges.push_back({ to, from });
-        a[from][to] = a[to][from] = true;
-        g[from].push_back(to);
-        g[to].push_back(from);
-    }
-    m *= 2;
-    for (int i = 0; i < m; i++) {
+    scanf("%d %d", &m, &n);
+    for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            // A -> B
-            int A = edges[i].first;
-            int B = edges[i].second;
-            // C -> D
-            int C = edges[j].first;
-            int D = edges[j].second;
-            if (A == B || A == C || A == D || B == C || B == D || C == D) {
-                continue;
-            }
-            // B -> C
-            if (!a[B][C]) {
-                continue;
-            }
-            // D -> E
-            for (int E : g[D]) {
-                if (A == E || B == E || C == E || D == E) {
-                    continue;
+            scanf("%1d", &a[i][j]);
+            d[i][j] = -1;
+        }
+    }
+    deque<pair<int, int>> q;
+    q.push_back(make_pair(0, 0));
+    d[0][0] = 0;
+    while (!q.empty()) {
+        int x = q.front().first;
+        int y = q.front().second;
+        q.pop_front();
+        for (int k = 0; k < 4; k++) {
+            int nx = x + dx[k];
+            int ny = y + dy[k];
+            if (0 <= nx && nx < n && 0 <= ny && ny < m) {
+                if (d[nx][ny] == -1) {
+                    if (a[nx][ny] == 0) {
+                        d[nx][ny] = d[x][y];
+                        q.push_front(make_pair(nx, ny));
+                    }
+                    else {
+                        d[nx][ny] = d[x][y] + 1;
+                        q.push_back(make_pair(nx, ny));
+                    }
                 }
-                cout << 1 << '\n';
-                return 0;
             }
         }
     }
-    cout << 0 << '\n';
+    printf("%d\n", d[n - 1][m - 1]);
     return 0;
 }
