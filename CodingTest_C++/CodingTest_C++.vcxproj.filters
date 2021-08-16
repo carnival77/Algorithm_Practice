@@ -31,6 +31,9 @@
     <Filter Include="소스 파일\5-2. BFS">
       <UniqueIdentifier>{fc7e7497-8660-4017-8ab1-c2d5714550d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\1. 수학">
+      <UniqueIdentifier>{9f83530f-d4ea-4914-a750-572e03e685fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="10972.다음순열.cpp">
@@ -98,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="1261.알고 스팟.cpp">
       <Filter>소스 파일\5-2. BFS</Filter>
+    </ClCompile>
+    <ClCompile Include="4375.1.cpp">
+      <Filter>소스 파일\1. 수학</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
