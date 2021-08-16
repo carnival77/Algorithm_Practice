@@ -32,11 +32,7 @@ for cmd in cmds:
     if cmd == 4:
         # 주사위 이동
         nx = x+1
-        # print('nx : ',nx,'n-1 : ',n-1)
         # 범위 밖이면 무시
-        # if 0 > nx and nx > n-1:
-        #     continue
-        # else:
         if 0 <= nx and nx <= n-1:
             x = nx
             #새로운 주사위 전개도
@@ -49,30 +45,14 @@ for cmd in cmds:
 
             dice_a = process(dice_b,x,y)
 
-            # #윗면 출력
-            # print(dice_b[1])
-            # #바닥면 수 작업
-            # # print('x : ',x,' y : ',y)
-            # board_num = board[x][y]
-            #
-            # if board_num == 0:
-            #     board[x][y] = dice_b[6]
-            # else:
-            #     dice_b[6] = board_num
-            #     board[x][y] = 0
-            # dice_a = dice_b
             dice_b = [0,0,0,0,0,0,0]
         else:
             continue
-        # print(dice_a)
     #북
     if cmd == 3:
         # 주사위 이동
         nx = x-1
         # 범위 밖이면 무시
-        # if 0 > nx and nx > n-1:
-        #     continue
-        # else:
         if 0 <= nx and nx <= n-1:
             x = nx
             #새로운 주사위 전개도
@@ -85,28 +65,14 @@ for cmd in cmds:
 
             dice_a = process(dice_b,x,y)
 
-            # #윗면 출력
-            # print(dice_b[1])
-            # #바닥면 수 작업
-            # board_num = board[x][y]
-            # if board_num == 0:
-            #     board[x][y] = dice_b[6]
-            # else:
-            #     dice_b[6] = board_num
-            #     board[x][y] = 0
-            # dice_a = dice_b
             dice_b = [0,0,0,0,0,0,0]
         else:
             continue
-        # print(dice_a)
     # 서
     if cmd == 2:
         # 주사위 이동
         ny = y - 1
         # 범위 밖이면 무시
-        # if 0 > ny and ny > m - 1:
-        #     continue
-        # else:
         if 0 <= ny and ny <= m-1:
             y = ny
             # 새로운 주사위 전개도
@@ -119,28 +85,14 @@ for cmd in cmds:
 
             dice_a = process(dice_b,x,y)
 
-            # # 윗면 출력
-            # print(dice_b[1])
-            # # 바닥면 수 작업
-            # board_num = board[x][y]
-            # if board_num == 0:
-            #     board[x][y] = dice_b[6]
-            # else:
-            #     dice_b[6] = board_num
-            #     board[x][y] = 0
-            # dice_a = dice_b
             dice_b = [0, 0, 0, 0, 0, 0, 0]
         else:
             continue
-        # print(dice_a)
     # 동
     if cmd == 1:
         # 주사위 이동
         ny = y + 1
         # 범위 밖이면 무시
-        # if 0 > ny and ny > m - 1:
-        #     continue
-        # else:
         if 0 <= ny and ny <= m-1:
             y = ny
             # 새로운 주사위 전개도
@@ -153,17 +105,6 @@ for cmd in cmds:
 
             dice_a = process(dice_b,x,y)
 
-            # # 윗면 출력
-            # print(dice_b[1])
-            # # 바닥면 수 작업
-            # board_num = board[x][y]
-            # if board_num == 0:
-            #     board[x][y] = dice_b[6]
-            # else:
-            #     dice_b[6] = board_num
-            #     board[x][y] = 0
-            # dice_a = dice_b
             dice_b = [0, 0, 0, 0, 0, 0, 0]
         else:
             continue
-        # print(dice_a)
