@@ -13,6 +13,7 @@ for _ in range(n):
 groupn = min(n//2,m//2)
 
 groups = []
+# index=0
 
 # 맨 마지막 수부터 첫 번째 수까지 거꾸로 넣는다.
 for k in range(groupn):
