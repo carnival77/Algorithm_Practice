@@ -2,8 +2,6 @@ import sys
 
 input = sys.stdin.readline
 
-p=True
-
 while True:
     try:
         n = int(input())
