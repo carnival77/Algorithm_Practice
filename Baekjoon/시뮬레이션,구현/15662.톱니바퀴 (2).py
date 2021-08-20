@@ -22,11 +22,13 @@ for _ in range(k):
     for i in range(n):
         if d[i]==0:
             continue
+        # 시계방향
         elif d[i]==1:
             temp = a[i][7]
             for j in range(7, 0, -1):
                 a[i][j] = a[i][j-1]
             a[i][0] = temp
+        # 반시계방향
         elif d[i]==-1:
             temp=a[i][0]
             for j in range(7):
