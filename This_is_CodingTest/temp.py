@@ -1,47 +1,80 @@
-# 풀이법
-# 1. 드래곤 커브를 그릴 때, 시작점의 좌표와 방향을 활용하자.
-# 2. k세대는, (K-1)세대의 순서를 반대로 하고, 반시계 방향으로 90도 회전한 것.
+s, n = map(int, input().split())
 
-import sys
+m = '-'
+l = '|'
 
-input = sys.stdin.readline
 
-c=[[False]*101 for i in range(101)]
-# dx=[1,0,-1,0]
-# dy=[0,-1,0,1]
-dx = [0,-1,0,1]
-dy = [1,0,-1,0]
-n=int(input())
+def init():
+    num = [[' '] * (s + 2) for _ in range(2 * s + 3)]
+    return num
 
-# 이전 세대부터 다음 세대의 것까지 합쳐진 모든 방향 구하기
-def curve(d,g):
-    ans=[d]
-    for _ in range(1,g+1):
-        # ng = next generation. 다음 세대
-        # 2. k세대는, (K-1)세대의 순서를 반대로 하고, 반시계 방향으로 90도 회전한 것.
-        # 먼저 이전 세대의 방향을 모두 얻고
-        ng = ans[:]
-        # 순서 반대로
-        ng = ng[::-1]
-        # 모두 반시계 90도 회전
-        for i in range(len(ng)):
-            ng[i] = (ng[i]+1)%4
-        # 기존 세대에 다음 세대 합치기
-        ans+=ng
-    return ans
 
-for _ in range(n):
-    y,x,d,g = map(int,input().split())
-    # 이전 세대부터 다음 세대의 것까지 합쳐진 모든 방향 구하기
-    dir = curve(d,g)
-    c[x][y] = True
-    for d in dir:
-        x += dx[d]
-        y += dy[d]
-        c[x][y] = True
-ans = 0
-for i in range(100):
-    for j in range(100):
-        if c[i][j] and c[i][j+1]  and c[i+1][j] and c[i+1][j+1]:
-            ans += 1
-print(ans)
+def top(num):
+    for i in range(1, s + 1):
+        num[0][i] = m
+
+
+def lt(num):
+    for i in range(1, s + 1):
+        num[i][0] = l
+
+
+def rt(num):
+    for i in range(1, s + 1):
+        num[i][-1] = l
+
+
+def md(num):
+    for i in range(1, s + 1):
+        num[s + 1][i] = m
+
+
+def bl(num):
+    for i in range(s + 2, 2 * s + 2):
+        num[i][0] = l
+
+
+def br(num):
+    for i in range(s + 2, 2 * s + 2):
+        num[i][-1] = l
+
+
+def bt(num):
+    for i in range(1, s + 1):
+        num[2 * s + 2][i] = m
+
+
+def draw(c, num):
+    if c in [0, 2, 3, 5, 6, 7, 8, 9]:
+        top(num)
+    if c in [0, 4, 5, 6, 8, 9]:
+        lt(num)
+    if c in [0, 1, 2, 3, 4, 7, 8, 9]:
+        rt(num)
+    if c in [2, 3, 4, 5, 6, 8, 9]:
+        md(num)
+    if c in [0, 2, 6, 8]:
+        bl(num)
+    if c in [0, 1, 3, 4, 5, 6, 7, 8, 9]:
+        br(num)
+    if c in [0, 2, 3, 5, 6, 8, 9]:
+        bt(num)
+
+
+n = str(n)
+arr = []
+
+for c in n:
+    num = init()
+    draw(int(c), num)
+    arr.append(num)
+
+ans = [[] for _ in range(2 * s + 3)]
+
+for i in range(0, 2 * s + 3):
+    for idx in range(len(arr)):
+        ans[i] += arr[idx][i]
+        ans[i].append(' ')
+
+for c_arr in ans:
+    print(''.join(c_arr))
