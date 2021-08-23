@@ -1,93 +1,86 @@
-n,m = map(int,input().split())
+n, m = map(int, input().split())
+a = [list(map(int, input().split())) for _ in range(n)]
+ans = 0
+for i in range(n):
+    for j in range(m):
+        if j + 3 < m:
+            temp = a[i][j] + a[i][j + 1] + a[i][j + 2] + a[i][j + 3]
+            if ans < temp: ans = temp
 
-board=[]
+        if i + 3 < n:
+            temp = a[i][j] + a[i + 1][j] + a[i + 2][j] + a[i + 3][j]
+            if ans < temp: ans = temp
 
-for _ in range(n):
-    board.append(list(map(int,input().split())))
+        if i + 1 < n and j + 2 < m:
+            temp = a[i][j] + a[i + 1][j] + a[i + 1][j + 1] + a[i + 1][j + 2]
+            if ans < temp: ans = temp
 
-temp=0
-ans=0
+        if i + 2 < n and j + 1 < m:
+            temp = a[i][j] + a[i][j + 1] + a[i + 1][j] + a[i + 2][j]
+            if ans < temp: ans = temp
 
-def get_sum(x1,y1,x2,y2,x3,y3,x4,y4):
-    return board[x1][y1] + board[x2][y2] + board[x3][y3] + board[x4][y4]
+        if i + 1 < n and j + 2 < m:
+            temp = a[i][j] + a[i][j + 1] + a[i][j + 2] + a[i + 1][j + 2]
+            if ans < temp: ans = temp
 
-for x in range(n):
-    for y in range(m):
-        #1
-        if y+3 < m:
-            temp = get_sum(x,y,x,y+1,x,y+2,x,y+3)
+        if i + 2 < n and j - 1 >= 0:
+            temp = a[i][j] + a[i + 1][j] + a[i + 2][j] + a[i + 2][j - 1]
             if ans < temp: ans = temp
-        #2
-        if x + 3 < n:
-            temp = get_sum(x, y, x+1, y, x+2, y, x+3, y)
+
+        if i - 1 >= 0 and j + 2 < m:
+            temp = a[i][j] + a[i][j + 1] + a[i][j + 2] + a[i - 1][j + 2]
             if ans < temp: ans = temp
-        #3
-        if y+1 < m and x+1 < n:
-            temp = get_sum(x,y,x+1,y,x,y+1,x+1,y+1)
+
+        if i + 2 < n and j + 1 < m:
+            temp = a[i][j] + a[i + 1][j] + a[i + 2][j] + a[i + 2][j + 1]
             if ans < temp: ans = temp
-        #4
-        if y+1 < m and x+2 < n:
-            temp = get_sum(x,y,x+1,y,x+2,y,x+2,y+1)
+
+        if i + 1 < n and j + 2 < m:
+            temp = a[i][j] + a[i][j + 1] + a[i][j + 2] + a[i + 1][j]
             if ans < temp: ans = temp
-        #5
-        if y+1 < m and x-2 >= 0:
-            temp = get_sum(x,y,x,y+1,x-1,y+1,x-2,y+1)
+
+        if i + 2 < n and j + 1 < m:
+            temp = a[i][j] + a[i][j + 1] + a[i + 1][j + 1] + a[i + 2][j + 1]
             if ans < temp: ans = temp
-        #6
-        if y+2 < m and x+1 < n:
-            temp = get_sum(x,y,x+1,y,x,y+1,x,y+2)
+
+        if i + 1 < n and j + 1 < m:
+            temp = a[i][j] + a[i][j + 1] + a[i + 1][j] + a[i + 1][j + 1]
             if ans < temp: ans = temp
-        #7
-        if y+2 < m and x+1 < n:
-            temp = get_sum(x,y,x,y+1,x,y+2,x+1,y+2)
+
+        if i - 1 >= 0 and j + 2 < m:
+            temp = a[i][j] + a[i][j + 1] + a[i - 1][j + 1] + a[i - 1][j + 2]
             if ans < temp: ans = temp
-        #8
-        if y+2 < m and x-1 >= 0:
-            temp = get_sum(x,y,x,y+1,x,y+2,x-1,y+2)
+
+        if i + 2 < n and j + 1 < m:
+            temp = a[i][j] + a[i + 1][j] + a[i + 1][j + 1] + a[i + 2][j + 1]
             if ans < temp: ans = temp
-        #9
-        if y+2 < m and x-1 >= 0:
-            temp = get_sum(x,y,x,y+1,x,y+2,x-1,y)
+
+        if i + 1 < n and j + 2 < m:
+            temp = a[i][j] + a[i][j + 1] + a[i + 1][j + 1] + a[i + 1][j + 2]
             if ans < temp: ans = temp
-        #10
-        if y+1 < m and x+2 < n:
-            temp = get_sum(x,y,x,y+1,x+1,y+1,x+2,y+1)
+
+        if i + 2 < n and j - 1 >= 0:
+            temp = a[i][j] + a[i + 1][j] + a[i + 1][j - 1] + a[i + 2][j - 1]
             if ans < temp: ans = temp
-        #11
-        if y+1 < m and x+2 < n:
-            temp = get_sum(x,y,x,y+1,x+1,y,x+2,y)
-            if ans < temp: ans = temp
-        #12
-        if y+1 < m and x+2 < n:
-            temp = get_sum(x,y,x+1,y,x+1,y+1,x+2,y+1)
-            if ans < temp: ans = temp
-        #13
-        if y+1 < m and x-2 >= 0:
-            temp = get_sum(x,y,x-1,y,x-1,y+1,x-2,y+1)
-            if ans < temp: ans = temp
-        #14
-        if y+2 < m and x+1 < n:
-            temp = get_sum(x,y,x,y+1,x+1,y+1,x+1,y+2)
-            if ans < temp: ans = temp
-        #15
-        if y+2 < m and x-1 >= 0:
-            temp = get_sum(x,y,x,y+1,x-1,y+1,x-1,y+2)
-            if ans < temp: ans = temp
-        #16
-        if y+1 < m and x+2 < n:
-            temp = get_sum(x,y,x+1,y,x+2,y,x+1,y+1)
-            if ans < temp: ans = temp
-        #17
-        if y+2 < m and x-1 >= 0:
-            temp = get_sum(x,y,x,y+1,x-1,y+1,x,y+2)
-            if ans < temp: ans = temp
-        #18
-        if y-1 >= 0 and x+2 < n:
-            temp = get_sum(x,y,x+1,y,x+2,y,x+1,y-1)
-            if ans < temp: ans = temp
-        #19
-        if y+1 < m and x+2 < n:
-            temp = get_sum(x,y,x+1,y,x+2,y,x,y+1)
-            if ans < temp: ans = temp
+
+        if j + 2 < m:
+            temp = a[i][j] + a[i][j + 1] + a[i][j + 2]
+            if i - 1 >= 0:
+                temp2 = temp + a[i - 1][j + 1]
+                if ans < temp2: ans = temp2
+
+            if i + 1 < n:
+                temp2 = temp + a[i + 1][j + 1]
+                if ans < temp2: ans = temp2
+
+        if i + 2 < n:
+            temp = a[i][j] + a[i + 1][j] + a[i + 2][j]
+            if j + 1 < m:
+                temp2 = temp + a[i + 1][j + 1]
+                if ans < temp2: ans = temp2
+
+            if j - 1 >= 0:
+                temp2 = temp + a[i + 1][j - 1]
+                if ans < temp2: ans = temp2
 
 print(ans)
