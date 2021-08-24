@@ -66,11 +66,7 @@ for tg in tgs:
         num = tbbr(num)
     if tg in [2,3,5,6,8,9,0]:
         num = bot(num)
-    # for i in range(ver):
-    #     num[i].append(' ')
     nums.append(num)
-    # for i in range(ver):
-    #     print(''.join(num[i]))
 
 ans = [[] for _ in range(2*s + 3)]
 
