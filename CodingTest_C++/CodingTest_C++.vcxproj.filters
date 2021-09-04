@@ -34,6 +34,15 @@
     <Filter Include="소스 파일\1. 수학">
       <UniqueIdentifier>{9f83530f-d4ea-4914-a750-572e03e685fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\3. 브루트포스\기본">
+      <UniqueIdentifier>{f8cf3b49-f5da-453a-905d-3fa8f35afbd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\코딩 테스트 복기">
+      <UniqueIdentifier>{6e5b1186-a594-46f5-af93-17b88b5d19fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\코딩 테스트 복기\LG전자 HE본부">
+      <UniqueIdentifier>{ab542dac-7946-453e-a8ae-e95f545d50ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="10972.다음순열.cpp">
@@ -104,6 +113,15 @@
     </ClCompile>
     <ClCompile Include="4375.1.cpp">
       <Filter>소스 파일\1. 수학</Filter>
+    </ClCompile>
+    <ClCompile Include="2309.일곱 난장이.cpp">
+      <Filter>소스 파일\3. 브루트포스\기본</Filter>
+    </ClCompile>
+    <ClCompile Include="3085.사탕 게임.cpp">
+      <Filter>소스 파일\3. 브루트포스\기본</Filter>
+    </ClCompile>
+    <ClCompile Include="3번.cpp">
+      <Filter>소스 파일\코딩 테스트 복기\LG전자 HE본부</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

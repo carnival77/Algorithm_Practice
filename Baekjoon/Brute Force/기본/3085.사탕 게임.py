@@ -31,12 +31,13 @@ answer = 0
 # 보드를 모두 순차 탐색. 각 칸에서 오른쪽과 아래쪽을 서로 바꾼다.
 for x in range(n):
     for y in range(n):
-        # 오른쪽 change
+        # 좌우 change
         if y+1 < n:
             board[x][y],board[x][y+1] = board[x][y+1],board[x][y]
             if answer < check(board):
                 answer = check(board)
             board[x][y+1],board[x][y] = board[x][y],board[x][y+1]
+        # 상하 change
         if x+1 < n:
             board[x][y],board[x+1][y] = board[x+1][y],board[x][y]
             if answer < check(board):
