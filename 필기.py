@@ -61,5 +61,3 @@ print("안녕하세요", end=' ')
 '_'.join(['a', 'b', 'c']) 라 하면 "a_b_c" 와 같은 형태로 문자열을 만들어서 반환해 줍니다.
 
 
-
-출처: https://blockdmask.tistory.com/468 [개발자 지망생]
