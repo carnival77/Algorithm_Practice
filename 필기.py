@@ -60,4 +60,41 @@ print("안녕하세요", end=' ')
 '구분자'.join(리스트)를 이용하면 리스트의 값과 값 사이에 '구분자'에 들어온 구분자를 넣어서 하나의 문자열로 합쳐줍니다.
 '_'.join(['a', 'b', 'c']) 라 하면 "a_b_c" 와 같은 형태로 문자열을 만들어서 반환해 줍니다.
 
+# 배열 90도 회전
+def rotated(a):
+  n = len(a)
+  m = len(a[0])
 
+  result = [[0]* n for _ in range(m)]
+
+  for i in range(n):
+    for j in range(m):
+      result[j][n-i-1] = a[i][j]
+  return result
+
+
+# 상하 반전
+n, m = 4, 6
+arr = [[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12], [13, 14, 15, 16, 17, 18], [19, 20, 21, 22, 23, 24]]
+temp = [[0] * m for _ in range(n)]
+
+# 1. 반복문
+for i in range(n):
+    temp[i] = arr[n - 1 - i]
+
+# 2. 문자열 슬라이싱
+arr = arr[::-1]
+
+# 좌우 반전
+n, m = 4, 6
+arr = [[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12], [13, 14, 15, 16, 17, 18], [19, 20, 21, 22, 23, 24]]
+temp = [[0] * m for _ in range(n)]
+
+# 1. 반복문
+for i in range(n):
+    for j in range(m):
+        temp[i][j] = arr[i][m - 1 - j]
+
+# 2. 문자열 슬라이싱
+for i in range(n):
+    arr[i] = arr[i][::-1]
