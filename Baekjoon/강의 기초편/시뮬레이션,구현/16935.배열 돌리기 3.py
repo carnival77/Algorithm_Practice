@@ -35,6 +35,7 @@ def op2(a):
             b[i][j] = a[i][next_j]
     return b
 
+# 우측 90도 회전
 def op3(a):
     # 90도 회전은 b를 n 행 m 열 -> m 행 n 열로
     # 3번 연산
@@ -50,6 +51,7 @@ def op3(a):
             b[i][j] = a[n-1-j][i]
     return b
 
+# 좌측 90도 회전
 def op4(a):
     # 90도 회전은 b를 n 행 m 열 -> m 행 n 열로
     # 4번 연산
@@ -58,10 +60,7 @@ def op4(a):
     b = list([0] * n for _ in range(m))  # a 모두에 0을 대신 채운 b. m 행 n 열
     for i in range(m):
         for j in range(n):
-            # 오른쪽으로 90도 회전시킨다.
-            # 1) b[i][j] = a[][]
-            # 2) b의 i번째 행 = a의 i번째 열 : b[i][j] = a[][i]
-            # 3) b의 i번째 행의 j의 순서 = a의 i번째 열의 거꾸로순 : b[i][j] = a[n-1-j][i]
+            # 왼쪽으로 90도 회전시킨다.
             b[i][j] = a[j][m-1-i]
     return b
 
