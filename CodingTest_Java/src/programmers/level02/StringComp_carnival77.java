@@ -1,5 +1,6 @@
 package programmers.level02;
 
+// 문자열 압축
 public class StringComp_carnival77 {
 
     public int solution(String s) {

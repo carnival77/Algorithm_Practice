@@ -1,6 +1,7 @@
 package programmers.level02;
 import java.util.*;
 
+// 오픈 채팅방
 public class OpenChatRoom_carnival77 {
 //    class Solution {
 

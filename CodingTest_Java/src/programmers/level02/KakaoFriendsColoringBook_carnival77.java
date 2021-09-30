@@ -2,6 +2,7 @@ package programmers.level02;
 
 import java.util.*;
 
+// 카카오프렌즈 컬러링 북
 public class KakaoFriendsColoringBook_carnival77 {
 
 //    class Solution {
