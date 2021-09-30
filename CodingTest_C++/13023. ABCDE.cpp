@@ -32,7 +32,7 @@ int main() {
             // C -> D
             int C = edges[j].first;
             int D = edges[j].second;
-            // (A,B)와 (C,D)가 서로 다른 점이도록
+            // A,B,C,D,E 가 서로 다른 점이도록
             if (A == B || A == C || A == D || B == C || B == D || C == D) {
                 continue;
             }
