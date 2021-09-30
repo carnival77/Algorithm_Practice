@@ -1,4 +1,4 @@
-package programmers.level02.stringcompression;
+package programmers.level02;
 
 public class StringComp_carnival77 {
 

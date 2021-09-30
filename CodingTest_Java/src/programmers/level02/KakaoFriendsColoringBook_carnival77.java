@@ -1,10 +1,10 @@
-package programmers.level02.KakaoFriendsColoringBook;
+package programmers.level02;
 
 import java.util.*;
 
 public class KakaoFriendsColoringBook_carnival77 {
 
-    class Solution {
+//    class Solution {
         public final int[] dx = {-1, 1, 0, 0};
         public final int[] dy = {0, 0, 1, -1};
 
@@ -59,5 +59,18 @@ public class KakaoFriendsColoringBook_carnival77 {
 
             return answer;
         }
-    }
+
+//    }
+
+//    public static void main(String[] args) {
+//
+//        String[] record = {"Enter uid1234 Muzi",
+//                "Enter uid4567 Prodo",
+//                "Leave uid1234",
+//                "Enter uid1234 Prodo",
+//                "Change uid4567 Ryan"};
+//
+//        KakaoFriendsColoringBook_carnival77 sol = new KakaoFriendsColoringBook_carnival77();
+//        sol.solution()
+//    }
 }

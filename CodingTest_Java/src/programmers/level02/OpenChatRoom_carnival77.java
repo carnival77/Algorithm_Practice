@@ -1,8 +1,8 @@
-package programmers.level02.OpenChatRoom;
+package programmers.level02;
 import java.util.*;
 
 public class OpenChatRoom_carnival77 {
-    class Solution {
+//    class Solution {
 
         StringTokenizer st = new StringTokenizer("");
         HashMap<String,String> ID_Name = new HashMap<>();
@@ -36,5 +36,17 @@ public class OpenChatRoom_carnival77 {
             return ans.toArray(new String[ans.size()]);
 
         }
+//    }
+
+    public static void main(String[] args) {
+
+        String[] record = {"Enter uid1234 Muzi",
+                "Enter uid4567 Prodo",
+                "Leave uid1234",
+                "Enter uid1234 Prodo",
+                "Change uid4567 Ryan"};
+
+        OpenChatRoom_carnival77 sol = new OpenChatRoom_carnival77();
+        sol.solution(record);
     }
 }
