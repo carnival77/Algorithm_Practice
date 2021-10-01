@@ -14,7 +14,7 @@ def dfs(index):
         print(" ".join(map(str,arr)))
         return
 
-    # 첫 번째 자리에 1 초과의 수가 올 수 있는 이유 : index =0 일 때 이 for 루프가 1~(n+1)까지 돌고 있으니까
+    # 첫 번째 자리에 두 번째 이후의 수가 올 수 있는 이유 : index =0 일 때 이 for 루프가 1~(n+1)까지 돌고 있으니까
     for num in range(1,n+1):
         # 이전에 사용된 숫자라면 무시. 중복 허용 X
         if used[num]:
