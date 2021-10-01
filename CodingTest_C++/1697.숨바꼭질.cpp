@@ -9,7 +9,6 @@
 #include<cstring>
 #include<algorithm>
 using namespace std;
-vector<int> graph[200001];
 bool check[200001];
 int dist[200001];
 
