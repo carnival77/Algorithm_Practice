@@ -18,8 +18,9 @@
     def recur(index, 변화하는 요소 1, 변화하는 요소 2):
 
         종료 조건 설정
-        if index == n:
-            ~~~
+        if index > n:
+            return
+        if len(arr) == n:
             return
 
         recur(index, 변화하는 요소 1 변화 O, 변화하는 요소 2 변화 X)
