@@ -1,8 +1,10 @@
 def recur(a,index,arr):
     # 종료 조건
+    # 정답을 찾은 경우
     if len(arr) == 6:
         print(' '.join(map(str,arr)))
         return
+    # 불가능한 경우
     if index == len(a):
         return
     recur(a,index+1,arr+[a[index]])
