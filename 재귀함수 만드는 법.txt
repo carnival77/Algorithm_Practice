@@ -33,7 +33,7 @@
         # 정답을 찾은 경우
         if len(arr) == n:
             return
-        # 불가능한 경우
+        # 불가능한 경우 = 더 이상 진행되면 index 에러가 나는 경우.
         if index > n:
             return
 
