@@ -1,3 +1,5 @@
+# 대표 유형 : 2개 이상의 지점에서 BFS를 전개하여 전체 칸에 적용되는 최소 시간, 최단 거리를 구하는 문제.
+
 import sys
 from collections import deque
 
