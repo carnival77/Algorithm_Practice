@@ -16,6 +16,7 @@ ans=-1
 
 for i in range(n):
     for j in range(n):
+        # 2인 지점을 subs에 넣고, 빈 칸인 0으로 바꾼다.
         if board[i][j] == 2:
             board[i][j]=0
             subs.append((i,j))
@@ -31,6 +32,7 @@ def bfs():
         for j in range(n):
             if board[i][j] == 3:
                 q.append((i,j))
+                # 해당 지점부터 바이러스가 시작되도록 d 를 0 으로 바꾼다
                 d[i][j]=0
 
     while q:
@@ -48,12 +50,12 @@ def bfs():
     cur=0
     for i in range(n):
         for j in range(n):
-            # 벽이 아닌데, 즉 빈 칸(0) 이거나 바이러스가 있는(3) 칸이면
-            if board[i][j] != 1:
-                # 그런데 방문하지 않은 칸이 있다면 ans를 -1로 유지하기 위해 return
+            # 빈 칸이면
+            if board[i][j] == 0:
+                # 그 중 방문하지 않은 칸이 있다면 ans를 -1로 유지하기 위해 return
                 if d[i][j] == -1:
                     return
-                # 이번 bfs의 최소 시간을 cur로
+                # 벽이 아닌 칸들이 모두 방문한 칸들이라면, 이번 bfs의 최소 시간을 cur로
                 if cur < d[i][j]:
                     cur = d[i][j]
     global ans
@@ -72,144 +74,14 @@ def go(index,cnt):
             bfs()
     else:
         x,y = subs[index]
+        # 바이러스가 있는 곳을 3으로 바꾼다
         board[x][y] = 3
         cnt+=1
         go(index+1,cnt)
+        # 다시 돌려놓는다.
         board[x][y]=0
         cnt-=1
         go(index+1,cnt)
 
 go(0,0)
 print(ans)
-
-
-# solution 1. combinations 사용 - 어떻게 하는 지 모르겠다. 다시 생각해보자.
-# from itertools import combinations
-# from collections import deque
-# import sys
-#
-# n,m = map(int,input().split())
-# board=[]
-# for i in range(n):
-#     board.append(list(map(int,input().split())))
-#
-# temp = [[0] * n for _ in range(n)]
-#
-# def make_temp(n):
-#     for i in range(n):
-#         for j in range(n):
-#             temp[i][j] = board[i][j]
-#
-# dx=[-1,1,0,0]
-# dy=[0,0,-1,1]
-#
-# # zeros=[]
-# subs=[]
-# # ans=[]
-# ans=-1
-#
-# # for i in range(n):
-# #     for j in range(m):
-# #         if board[i][j] == 0:
-# #             zeros.append((i,j))
-# #         elif board[i][j] == 2:
-# #             twos.append((i,j))
-#
-# d=[[-1] * n for _ in range(n)]
-# for i in range(n):
-#     for j in range(n):
-#         if board[i][j] == 2:
-#             # board[i][j]=0
-#             subs.append((i,j))
-#
-# for sub in combinations(subs,m):
-#     q = deque()
-#     d = [[-1] * n for _ in range(n)]
-#     make_temp(n)
-#
-#     for i in range(n):
-#         for j in range(n):
-#             if temp[i][j] == 2:
-#                 temp[i][j]=0
-#
-#     for x,y in sub:
-#         # board[x][y]=2
-#         temp[x][y]=3
-#         q.append((x,y))
-#         d[x][y]=0
-#
-#     while q:
-#         x,y = q.popleft()
-#         for dir in range(4):
-#             nx,ny = x+dx[dir], y+dy[dir]
-#             if 0<=nx<n and 0<=ny<n:
-#                 if temp[nx][ny]!=1 and d[nx][ny] == -1:
-#                     # board[nx][ny] = 2
-#                     temp[nx][ny]=2
-#                     q.append((nx,ny))
-#                     d[nx][ny] = d[x][y]+1
-#     # ans.append(max([max(row) for row in d]))
-#     cur = 0
-#     for i in range(n):
-#         for j in range(n):
-#             if board[i][j] != 1:
-#                 if d[i][j] == -1:
-#                     # return
-#                     continue
-#                 if cur < d[i][j]:
-#                     cur = d[i][j]
-#     # global ans
-#     if ans == -1 or ans > cur:
-#         ans = cur
-#
-#     # for i in range(n):
-#     #     for j in range(m):
-#     #         if temp[i][j] == 0:
-#     #             print(-1)
-#     #             sys.exit(0)
-#
-# print(ans)
-# # ans = max([max(row) for row in d])
-# # print(min(ans))
-#
-#
-#
-# subs = combinations(zeros,3)
-#
-# ans=0
-#
-# def bfs(two):
-#     q = deque()
-#     x,y=two
-#     q.append((x,y))
-#     while q:
-#         x,y = q.popleft()
-#         for dir in range(4):
-#             nx,ny = x+dx[dir],y+dy[dir]
-#             if 0<=nx<n and 0<=ny<n:
-#                 if temp[nx][ny] == 0:
-#                     temp[nx][ny]=2
-#                     q.append((nx,ny))
-#
-# def safe(n,m):
-#     cnt=0
-#     for x in range(n):
-#         for y in range(m):
-#             if temp[x][y] == 0:
-#                 cnt+=1
-#     return cnt
-#
-# for sub in subs:
-#     make_temp(n,m)
-#     point1,point2,point3 = sub
-#     x1,y1,x2,y2,x3,y3=point1[0],point1[1],point2[0],point2[1],point3[0],point3[1]
-#     temp[x1][y1] = 1
-#     temp[x2][y2] = 1
-#     temp[x3][y3] = 1
-#     for two in twos:
-#         bfs(two)
-#     cnt = safe(n,m)
-#     ans=max(ans,cnt)
-#
-# print(ans)
-

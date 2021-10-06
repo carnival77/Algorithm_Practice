@@ -16,6 +16,7 @@ ans=-1
 
 for i in range(n):
     for j in range(n):
+        # 2인 지점을 subs에 넣고, 빈 칸인 0으로 바꾼다.
         if board[i][j] == 2:
             board[i][j]=0
             subs.append((i,j))
@@ -31,6 +32,7 @@ def bfs():
         for j in range(n):
             if board[i][j] == 3:
                 q.append((i,j))
+                # 해당 지점부터 바이러스가 시작되도록 d 를 0 으로 바꾼다
                 d[i][j]=0
 
     while q:
@@ -48,12 +50,12 @@ def bfs():
     cur=0
     for i in range(n):
         for j in range(n):
-            # 벽이 아닌데, 즉 빈 칸(0) 이거나 바이러스가 있는(3) 칸이면
+            # 벽이 아닌 칸, 즉 빈 칸(0) 이거나 바이러스가 있던(2) 칸이면
             if board[i][j] != 1:
-                # 그런데 방문하지 않은 칸이 있다면 ans를 -1로 유지하기 위해 return
+                # 그 중 방문하지 않은 칸이 있다면 ans를 -1로 유지하기 위해 return
                 if d[i][j] == -1:
                     return
-                # 이번 bfs의 최소 시간을 cur로
+                # 벽이 아닌 칸들이 모두 방문한 칸들이라면, 이번 bfs의 최소 시간을 cur로
                 if cur < d[i][j]:
                     cur = d[i][j]
     global ans
@@ -72,9 +74,11 @@ def go(index,cnt):
             bfs()
     else:
         x,y = subs[index]
+        # 바이러스가 있는 곳을 3으로 바꾼다
         board[x][y] = 3
         cnt+=1
         go(index+1,cnt)
+        # 다시 돌려놓는다.
         board[x][y]=0
         cnt-=1
         go(index+1,cnt)
