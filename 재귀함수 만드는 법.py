@@ -29,7 +29,7 @@
 
     def dfs(index, 변화하는 요소 1, 변화하는 요소 2):
 
-        종료 조건 설정
+        # 종료 조건 설정
         # 정답을 찾은 경우
         if len(arr) == n:
             return
@@ -55,7 +55,7 @@
 
     def dfs(index, start, 변화하는 요소 2):
 
-        종료 조건 설정
+        # 종료 조건 설정
         # 정답을 찾은 경우
         if len(arr) == n:
             return
