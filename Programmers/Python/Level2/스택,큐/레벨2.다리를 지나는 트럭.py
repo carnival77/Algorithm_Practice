@@ -9,10 +9,10 @@ def solution(bridge_length, weight, truck_weights):
 
     for x in truck_weights:
         while True:
-            answer += 1
             if not q:
                 q.append(x)
                 cur+=x
+                answer += 1
                 break
             elif bridge_length == len(q):
                 cur-=q.popleft()
@@ -20,8 +20,10 @@ def solution(bridge_length, weight, truck_weights):
                 if cur+x <= weight:
                     q.append(x)
                     cur+=x
+                    answer += 1
                     break
                 else:
                     q.append(0)
+                    answer += 1
 
     return answer + bridge_length
