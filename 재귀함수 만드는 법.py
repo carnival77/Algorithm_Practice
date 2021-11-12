@@ -42,7 +42,7 @@
             if used[i]:
                 continue
             # index 번째를 고르고 다시 돌려놓는 과정
-            # index 번째를 고름 = dfs 함수 호출 준비
+            # i번째를 index 번째로 고름 = dfs 함수 호출 준비
             used[i]=True
             arr[index]=nums[i]
             dfs(index+1, 요소 1, 요소 2)
