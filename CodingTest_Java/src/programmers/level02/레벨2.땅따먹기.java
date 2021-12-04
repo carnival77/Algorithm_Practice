@@ -1,0 +1,33 @@
+package programmers.level02.conquestGround;
+
+import java.util.*;
+
+public class ConquestGround_carnival77 {
+    int solution(int[][] land) {
+        int answer = 0;
+
+        for(int i=1;i<land.length;i++){
+            land[i][0] += Math.max(Math.max(land[i-1][1],land[i-1][2]),land[i-1][3]);
+            land[i][1] += Math.max(Math.max(land[i-1][0],land[i-1][2]),land[i-1][3]);
+            land[i][2] += Math.max(Math.max(land[i-1][0],land[i-1][1]),land[i-1][3]);
+            land[i][3] += Math.max(Math.max(land[i-1][0],land[i-1][2]),land[i-1][1]);
+        }
+
+        int[] l = land[land.length-1];
+        for(int n : l){
+            answer = Math.max(n,answer);
+        }
+
+        return answer;
+    }
+
+    public static void main(String[] args) {
+
+        int[][] land = {{1,2,3,5},{5,6,7,8},{4,3,2,1}};
+
+        ConquestGround_carnival77 sol = new ConquestGround_carnival77();
+
+        System.out.println(sol.solution(land));
+
+    }
+}
