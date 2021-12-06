@@ -13,6 +13,7 @@ def solution(line):
     max_y=-INF
     min_y=INF
 
+    # 문제에 나온 공식대로 모든 정수 교차점과 좌표의 최대/최솟값을 구합니다.
     for first,second in combinations(line,2):
         a,b,e = first
         c,d,f = second
@@ -36,6 +37,7 @@ def solution(line):
         max_y = max(y, max_y)
         min_y = min(y, min_y)
 
+    # 너비와 높이를 계산 후, 별을 찍습니다.
     h=max_y-min_y+1
     w=max_x-min_x+1
 

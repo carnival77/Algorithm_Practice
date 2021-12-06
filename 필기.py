@@ -102,3 +102,6 @@ for i in range(n):
 # 2. 문자열 슬라이싱
 for i in range(n):
     arr[i] = arr[i][::-1]
+
+# 무한의 수 표현
+INF = float('inf')
