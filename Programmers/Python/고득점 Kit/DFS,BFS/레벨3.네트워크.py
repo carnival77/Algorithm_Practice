@@ -1,3 +1,5 @@
+# solution 1 : bfs 사용
+
 from collections import deque
 
 result=[]
@@ -22,8 +24,7 @@ def bfs(s,n):
                 result[i] = s
 
 def solution(n, computers):
-    global temp, visited,matrix,result
-    answer = 0
+    global visited,matrix,result
 
     matrix=computers
 
@@ -32,10 +33,33 @@ def solution(n, computers):
 
     for i in range(n):
         bfs(i,n)
+        # dfs(i,n)
 
     # print(result)
 
     return len(set(result))
+
+# solution 2 : dfs 사용
+
+def dfs(v,n,visit,computers):
+    global result
+    visit[v] = True
+
+    for i in range(n):
+        if visit[i] == False and computers[v][i] == 1:
+            dfs(i,n,visit,computers)
+
+def solution2(n,computers):
+    answer=0
+
+    visit=[False]*n
+
+    for i in range(n):
+        if visit[i] == False:
+            dfs(i,n,visit,computers)
+            answer+=1
+
+    return answer
 
 n=3
 computers = 	[[1, 1, 0], [1, 1, 0], [0, 0, 1]]
