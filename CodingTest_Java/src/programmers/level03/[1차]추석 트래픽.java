@@ -44,3 +44,6 @@ public class thanksGivingTraffic_carnival77 {
         return max;
     }
 }
+
+// 참고
+// https://wellbell.tistory.com/98
