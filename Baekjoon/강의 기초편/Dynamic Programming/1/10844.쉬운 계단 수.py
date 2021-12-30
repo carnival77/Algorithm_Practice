@@ -28,3 +28,5 @@ for j in range(10):
 ans%=mod
 
 print(ans)
+
+##
