@@ -1,3 +1,41 @@
+# 1
+
+win
+
+1 : (2)
+2 : (5)
+3 : (2)
+4 : (2,3)
+5 :
+
+lose
+
+1 :
+2 : (1,3,4)
+3 : (4)
+4 :
+5 : (2)
+
+# 2
+
+win
+
+1 : (2)
+2 : (5)
+3 : (2)
+4 : (2,3)
+5 :
+
+lose
+
+1 :
+2 : (1,3,4)
+3 : (4)
+4 :
+5 : (1,2,3,4)
+
+1,3,4 > 2 , 2 > 5 => 1,3,4 > 5
+
 # solution 1. graph 와 defaultdict(set) 이용
 
 from collections import defaultdict
@@ -8,15 +46,17 @@ def solution(n, results):
     win=defaultdict(set)
     lose=defaultdict(set)
 
+    # 1
     for winner,loser in results:
         win[winner].add(loser)
         lose[loser].add(winner)
 
+    # 2
     for i in range(1,n+1):
         for loser in win[i]:
-            lose[loser].update(lose[i])
+            lose[loser].update(lose[i]) # i한테 진 애들은 i를 이긴 애들한테도 진 것
         for winner in lose[i]:
-            win[winner].update(win[i])
+            win[winner].update(win[i]) # i한테 이긴 애들은 i한테 진 애들한테도 이긴 것
 
     for i in range(1,n+1):
         if len(win[i]) + len(lose[i]) == n-1:

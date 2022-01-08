@@ -76,7 +76,7 @@
 
     [template 2]
 
-    def dfs(index, start, 변화하는 요소 2):
+    def dfs(index, 변화하는 요소 1, 변화하는 요소 2):
 
         종료 조건 설정
         # 정답을 찾은 경우
@@ -86,24 +86,12 @@
         if index > n:
             return
 
-        for i in range(start,n):
-            # 중복 허용 여부.
-            if used[i]:
-                continue
-            # index 번째를 고르고 다시 돌려놓는 과정
-            # index 번째를 고름 = dfs 함수 호출 준비
-            used[i]=True
-            arr[index]=nums[i]
-            # dfs 함수 호출
-            dfs(index+1, i+1, 요소 2)
-            # index 번째를 다시 돌려 놓음(초기화)
-            used[i]=False
 
-        dfs(index, 변화하는 요소 1 변화 O, 변화하는 요소 2 변화 X)
-        dfs(index, 변화하는 요소 1 변화 X, 변화하는 요소 2 변화 O)
+        dfs(index+1, 변화하는 요소 1 변화 O, 변화하는 요소 2 변화 X)
+        dfs(index+1, 변화하는 요소 1 변화 X, 변화하는 요소 2 변화 O)
 
-        dfs(index, arr+[nums[index]])
-        dfs(index, arr)
+        dfs(index+1, arr+[nums[index]])
+        dfs(index+1, arr)
 
     # 중복순열 문제. 조합 : N개의 수 중 M개를 순서 상관하여 중복 허용하여 뽑는다.
 
