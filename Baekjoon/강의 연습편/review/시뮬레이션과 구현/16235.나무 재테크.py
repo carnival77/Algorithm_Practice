@@ -1,5 +1,5 @@
 # 3차원 배열을 trees=[[[] for _ in range(n)] for _ in range(n)] 로 선언
-
+#
 n,m,k = map(int,input().split())
 
 # 칸별 겨울에 양분 공급량
