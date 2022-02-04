@@ -17,24 +17,6 @@
 
 
 
-+
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 n=int(input())
 a=list(map(int,input().split()))
 
@@ -47,4 +29,3 @@ for i in range(n):
             dp[i]=dp[j]+1
 
 print(max(dp))
-
