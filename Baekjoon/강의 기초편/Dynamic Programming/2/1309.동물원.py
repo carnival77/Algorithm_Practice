@@ -1,3 +1,5 @@
+# 해설 : https://carnival.tistory.com/manage/posts/
+
 n=int(input())
 mod = 9901
 

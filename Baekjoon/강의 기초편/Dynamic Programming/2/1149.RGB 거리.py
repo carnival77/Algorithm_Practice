@@ -1,3 +1,5 @@
+# 해설 : https://carnival.tistory.com/69
+
 n=int(input())
 
 a = [[0,0,0]] + [list(map(int,input().split()))for _ in range(n)]
