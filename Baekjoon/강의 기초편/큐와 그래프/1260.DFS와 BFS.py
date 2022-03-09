@@ -4,12 +4,12 @@ import sys
 input = sys.stdin.readline
 from collections import deque
 
-N, M, V = map(int, input().split())
-matrix = [[0] * (N + 1) for i in range(N + 1)]
-for i in range(M):
+N, M, V = map(int, input().split()) # 정점의 개수, 간선의 개수, 시작점
+matrix = [[0] * (N + 1) for i in range(N + 1)] # 정점의 개수 + 1
+for i in range(M): # 간선의 개수
     a, b = map(int, input().split())
     matrix[a][b] = matrix[b][a] = 1
-visit = [0] * (N + 1)
+visit = [0] * (N + 1) # 정점의 개수 + 1
 
 
 def dfs(matrix, V):
@@ -34,7 +34,7 @@ def bfs(matrix, V):
 
 dfs(matrix, V)
 print()
-visit = [0] * (N + 1)
+visit = [0] * (N + 1) # 정점의 개수 + 1
 bfs(matrix, V)
 
 # 인접 리스트 활용
