@@ -111,6 +111,7 @@ def air_clean(sx,sy,z):
         a[x][y]=temp
         x+=dx[k]
         y+=dy[k]
+        # if x < 0 or y < 0 or x >= n or y >= m:
         if not 0<=x<n or not 0<=y<m:
             x-=dx[k]
             y-=dy[k]
@@ -121,6 +122,8 @@ def air_clean(sx,sy,z):
 for _ in range(t):
     for x in range(n):
         for y in range(m):
+            if a[x][y]<=0:
+                continue
             diffuse_target=[] # 미세먼지가 확산될 칸 리스트
             for k in range(4):
                 nx,ny = x+dx[k],y+dy[k]
@@ -139,6 +142,8 @@ for _ in range(t):
     # 저장 보드의 미세먼지를 원본 보드에 합한다.
     for x in range(n):
         for y in range(m):
+            if a[x][y]==-1:
+                continue
             a[x][y] += b[x][y]
             b[x][y]=0
 
