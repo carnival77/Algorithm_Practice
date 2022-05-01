@@ -203,11 +203,8 @@ def move():
                     if shark_next[nx][ny]>num:
                         shark_next[nx][ny]=num
                         dirs[num]=pd
-                # 이동했으면 종료
+                # 이동했으면 방향 탐색 종료
                 ok=True
-                break
-            # 이동했으면 종료
-            if ok:
                 break
 
         # 2.1. 에서 이동 안 했으면,
@@ -223,9 +220,6 @@ def move():
                     dirs[num] = pd
                     # 이동했으면 종료
                     ok = True
-                    break
-                # 이동했으면 종료
-                if ok:
                     break
 
     for x in range(n):

@@ -24,8 +24,8 @@
 
     [template 1]
 
-    used = [False] * n
-    arr = [0]*m
+    used = [False] * n # 주어진 n개 배열에서 어떤 것을 사용했고, 사용 안 했는지
+    arr = [0]*m # 최종적으로 뽑을 m개의 수
 
     def dfs(index, 변화하는 요소 1, 변화하는 요소 2):
 
@@ -41,8 +41,8 @@
             # 중복 허용 여부.
             if used[i]:
                 continue
-            # index 번째를 고르고 다시 돌려놓는 과정
-            # i번째를 index 번째로 고름 = dfs 함수 호출 준비
+            # arr의 index 번째를 고르고 다시 돌려놓는 과정
+            # nums의 i번째를 arr의 index 번째로 고름 = dfs 함수 호출 준비
             used[i]=True
             arr[index]=nums[i]
             dfs(index+1, 요소 1, 요소 2)
