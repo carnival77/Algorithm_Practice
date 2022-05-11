@@ -15,6 +15,8 @@ for i in broken_numbers:
 
 ans=abs(n-100)
 
+# C에 포함되어 있는 숫자 중 고장난 버튼이 있는지 확인한다.
+# 수를 10으로 계속해서 나누면서 각 자릿수의 수를 검사한다.
 def nums_possible(c):
     if c==0:
         if broken[c]==True:
@@ -30,10 +32,15 @@ def nums_possible(c):
             cnt+=1
     return cnt
 
+# 숫자 버튼을 눌러 이동할 채널 C를 정한다.
 for i in range(1000001):
     c=i
     pmpress=0
+    # C에 포함되어 있는 숫자 중 고장난 버튼이 있는지 확인한다.
+    # 고장난 버튼이 있으면, 해당 채널로는 숫자를 입력해서 이동할 수 없으므로 0을 반환한다.
+    # 고장난 버튼이 없다면, 해당 채널로 가기 위해 입력해야 하는 숫자의 횟수를 반환한다.
     nums_cnt = nums_possible(c)
+    # 고장난 버튼이 포함되어 있지 않다면 |C-N|을 계산해 +나 - 버튼을 몇 번 눌러야 하는지 구한다.
     if nums_cnt > 0:
         pmpress = abs(n-c)
         if ans > (nums_cnt + pmpress):
