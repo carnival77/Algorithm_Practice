@@ -4,12 +4,16 @@ m=int(input())
 ans=abs(n-100)
 
 b=[False]*10  #  고장난 버튼은 True
-for x in list(map(int,input().split())):
+if m > 0:
+    a = list(map(int,input().split()))
+else:
+    a = []
+for x in a:
     b[x]=True
 
 def nums_possible(c):
     if c==0:
-        if b[0]:
+        if b[c]:
             return 0
         else:
             return 1
