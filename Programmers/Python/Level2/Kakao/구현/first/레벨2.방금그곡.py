@@ -18,10 +18,12 @@ def solution(m, musicinfos):
         song_len=len(song)
         s,r=play_time//song_len,play_time%song_len
         played_Song=song*s+song[:r]
-        Ml=len(M)
-        for i in range(len(played_Song)-Ml+1):
-            if played_Song[i:i+Ml]==M:
-                result.append([title,play_time,index])
+        # Ml=len(M)
+        # for i in range(len(played_Song)-Ml+1):
+        #     if played_Song[i:i+Ml]==M:
+        #         result.append([title,play_time,index])
+        if M in played_Song:
+            result.append([title, play_time, index])
 
     if len(result)>=2:
         result.sort(key=lambda x:(-x[1],x[2]))
