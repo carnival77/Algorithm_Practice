@@ -109,3 +109,7 @@ for i in range(n):
 
 # 무한의 수 표현
 INF = float('inf')
+
+3차원 배열 선언하는 법
+축 : z, 열 : m, 행 : n
+[[[0]*z for j in range(m)] for i in range(n)]
