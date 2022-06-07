@@ -1,13 +1,7 @@
-# from itertools import combinations
-
 n,s = map(int,input().split())
 nums=list(map(int,input().split()))
 
 answer=0
-# for i in range(1,n):
-#     for j in combinations(arr,i):
-#         if sum(j) == s:
-#             answer+=1
 
 # solution 1
 def dfs(index,arr,m):
