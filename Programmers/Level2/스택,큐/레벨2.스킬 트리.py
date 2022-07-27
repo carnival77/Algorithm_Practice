@@ -26,10 +26,10 @@
 def solution(skill, skill_trees):
     ans = 0
     for skill_tree in skill_trees:
-        l=list(skill)
+        q=list(skill)
         for s in skill_tree:
-            if s in l:
-                if s!=l.pop(0):
+            if s in q:
+                if s!=q.pop(0):
                     break
         else:
             ans+=1
