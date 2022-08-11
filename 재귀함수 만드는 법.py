@@ -19,8 +19,9 @@
 
     문제 : n개인 nums 배열 중 m개를 선택.
 
-    # 순열 문제. 순열 : N개의 수 중 M개를 순서 상관하여 중복 허용하지 않고 뽑는다.
-    # 즉, 같은 값이 뽑히더라도 순서가 다르면 다른 경우의 수로 취급한다.
+    # 순열 : N개의 수 중 M개를 순서 상관하여 중복 허용하지 않고 뽑는다.
+    # 즉, 같은 조합의 수들이 뽑히더라도 순서가 다르면 다른 경우의 수로 취급한다.
+    from itertools import permutations
 
     [template 1]
 
@@ -48,8 +49,9 @@
             dfs(index+1, 요소 1, 요소 2)
             used[i]=False
 
-    # 조합 문제. 조합 : N개의 수 중 M개를 순서 상관하지 않고 중복 허용하지 않고 뽑는다.
+    # 조합 : N개의 수 중 M개를 순서 상관하지 않고 중복 허용하지 않고 뽑는다.
     # 추가 조건 : 오름차순
+    from itertools import combinations
 
     [template 1]
 
@@ -93,7 +95,8 @@
         dfs(index+1, arr+[nums[index]])
         dfs(index+1, arr)
 
-    # 중복순열 문제. 조합 : N개의 수 중 M개를 순서 상관하여 중복 허용하여 뽑는다.
+    # 중복순열 : N개의 수 중 M개를 순서 상관하여 중복 허용하여 뽑는다.
+    from itertools import product
 
     def dfs(index, 변화하는 요소 1, 변화하는 요소 2):
 
@@ -117,8 +120,9 @@
             used[i]=False
 
 
-    # 중복조합 문제. 조합 : N개의 수 중 M개를 순서 상관없이 중복 허용하여 뽑는다.
+    # 중복조합 : N개의 수 중 M개를 순서 상관없이 중복 허용하여 뽑는다.
     # 추가 조건 : 오름차순
+    from itertools import combinations_with_replacement
 
     def dfs(index, start, 변화하는 요소 2):
 
