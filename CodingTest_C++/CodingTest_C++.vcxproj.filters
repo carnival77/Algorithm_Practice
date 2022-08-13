@@ -13,120 +13,135 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\3. 브루트포스">
-      <UniqueIdentifier>{ab6ec160-adf7-4d09-9685-56bdc0c5ce99}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\3. 브루트포스\순열">
-      <UniqueIdentifier>{abb9c000-8482-48b4-a050-81ba3c2753f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\3. 브루트포스\재귀">
-      <UniqueIdentifier>{11e5e2a4-a792-4ed5-818d-1504f4b586e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\3. 브루트포스\비트마스크">
-      <UniqueIdentifier>{84ad5be9-a829-4e0f-b6b9-821577c442f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\5-1. 큐와 그래프">
-      <UniqueIdentifier>{c993682b-ee24-4284-b749-209db9f51494}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\5-2. BFS">
-      <UniqueIdentifier>{fc7e7497-8660-4017-8ab1-c2d5714550d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\1. 수학">
-      <UniqueIdentifier>{9f83530f-d4ea-4914-a750-572e03e685fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\3. 브루트포스\기본">
-      <UniqueIdentifier>{f8cf3b49-f5da-453a-905d-3fa8f35afbd7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\코딩 테스트 복기">
       <UniqueIdentifier>{6e5b1186-a594-46f5-af93-17b88b5d19fd}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\코딩 테스트 복기\LG전자 HE본부">
       <UniqueIdentifier>{ab542dac-7946-453e-a8ae-e95f545d50ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\백준기초편">
+      <UniqueIdentifier>{a140c54e-c400-4eac-a2b6-2cac22bb80f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\백준기초편\5-2. BFS">
+      <UniqueIdentifier>{fc7e7497-8660-4017-8ab1-c2d5714550d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\백준기초편\1. 수학">
+      <UniqueIdentifier>{9f83530f-d4ea-4914-a750-572e03e685fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\백준기초편\3. 브루트포스">
+      <UniqueIdentifier>{ab6ec160-adf7-4d09-9685-56bdc0c5ce99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\백준기초편\기본">
+      <UniqueIdentifier>{f8cf3b49-f5da-453a-905d-3fa8f35afbd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\백준기초편\비트마스크">
+      <UniqueIdentifier>{84ad5be9-a829-4e0f-b6b9-821577c442f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\백준기초편\순열">
+      <UniqueIdentifier>{abb9c000-8482-48b4-a050-81ba3c2753f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\백준기초편\재귀">
+      <UniqueIdentifier>{11e5e2a4-a792-4ed5-818d-1504f4b586e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\백준기초편\5-1. 큐와 그래프">
+      <UniqueIdentifier>{c993682b-ee24-4284-b749-209db9f51494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\백준연습편">
+      <UniqueIdentifier>{95b22e39-60fa-4c44-8930-beeb6b645527}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\백준연습편\브루트포스">
+      <UniqueIdentifier>{46050368-8257-4e61-8d36-3ab48c2ffe9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\백준연습편\브루트포스\순열">
+      <UniqueIdentifier>{6a22dfc5-f6e9-42e1-a43a-19a4a4c45398}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="10972.다음순열.cpp">
-      <Filter>소스 파일\3. 브루트포스\순열</Filter>
+      <Filter>소스 파일\백준기초편\순열</Filter>
     </ClCompile>
     <ClCompile Include="10972.다음순열_next_permutation.cpp">
-      <Filter>소스 파일\3. 브루트포스\순열</Filter>
+      <Filter>소스 파일\백준기초편\순열</Filter>
     </ClCompile>
     <ClCompile Include="10973.이전순열.cpp">
-      <Filter>소스 파일\3. 브루트포스\순열</Filter>
+      <Filter>소스 파일\백준기초편\순열</Filter>
     </ClCompile>
     <ClCompile Include="1248.맞춰봐.cpp">
-      <Filter>소스 파일\3. 브루트포스\재귀</Filter>
+      <Filter>소스 파일\백준기초편\재귀</Filter>
     </ClCompile>
     <ClCompile Include="14889. 스타트와 링크.cpp">
-      <Filter>소스 파일\3. 브루트포스\재귀</Filter>
+      <Filter>소스 파일\백준기초편\재귀</Filter>
     </ClCompile>
     <ClCompile Include="10974.모든순열.cpp">
-      <Filter>소스 파일\3. 브루트포스\순열</Filter>
+      <Filter>소스 파일\백준기초편\순열</Filter>
     </ClCompile>
     <ClCompile Include="10819.차이를최대로.cpp">
-      <Filter>소스 파일\3. 브루트포스\순열</Filter>
+      <Filter>소스 파일\백준기초편\순열</Filter>
     </ClCompile>
     <ClCompile Include="10971.외판원순회2.cpp">
-      <Filter>소스 파일\3. 브루트포스\순열</Filter>
+      <Filter>소스 파일\백준기초편\순열</Filter>
     </ClCompile>
     <ClCompile Include="6603.로또.cpp">
-      <Filter>소스 파일\3. 브루트포스\순열</Filter>
+      <Filter>소스 파일\백준기초편\순열</Filter>
     </ClCompile>
     <ClCompile Include="14889.스타트와링크_비트마스크.cpp">
-      <Filter>소스 파일\3. 브루트포스\비트마스크</Filter>
+      <Filter>소스 파일\백준기초편\비트마스크</Filter>
     </ClCompile>
     <ClCompile Include="tmp.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="108453.큐.cpp">
-      <Filter>소스 파일\5-1. 큐와 그래프</Filter>
+      <Filter>소스 파일\백준기초편\5-1. 큐와 그래프</Filter>
     </ClCompile>
     <ClCompile Include="10866.덱.cpp">
-      <Filter>소스 파일\5-1. 큐와 그래프</Filter>
+      <Filter>소스 파일\백준기초편\5-1. 큐와 그래프</Filter>
     </ClCompile>
     <ClCompile Include="13023. ABCDE.cpp">
-      <Filter>소스 파일\5-1. 큐와 그래프</Filter>
+      <Filter>소스 파일\백준기초편\5-1. 큐와 그래프</Filter>
     </ClCompile>
     <ClCompile Include="1260.DFS와 BFS.cpp">
-      <Filter>소스 파일\5-1. 큐와 그래프</Filter>
+      <Filter>소스 파일\백준기초편\5-1. 큐와 그래프</Filter>
     </ClCompile>
     <ClCompile Include="11724.연결 요소의 개수.cpp">
-      <Filter>소스 파일\5-1. 큐와 그래프</Filter>
+      <Filter>소스 파일\백준기초편\5-1. 큐와 그래프</Filter>
     </ClCompile>
     <ClCompile Include="1707.이분 그래프.cpp">
-      <Filter>소스 파일\5-1. 큐와 그래프</Filter>
+      <Filter>소스 파일\백준기초편\5-1. 큐와 그래프</Filter>
     </ClCompile>
     <ClCompile Include="1697.숨바꼭질.cpp">
-      <Filter>소스 파일\5-2. BFS</Filter>
+      <Filter>소스 파일\백준기초편\5-2. BFS</Filter>
     </ClCompile>
     <ClCompile Include="13913.숨바꼭질 4.cpp">
-      <Filter>소스 파일\5-2. BFS</Filter>
+      <Filter>소스 파일\백준기초편\5-2. BFS</Filter>
     </ClCompile>
     <ClCompile Include="13549.숨바꼭질 3_큐.cpp">
-      <Filter>소스 파일\5-2. BFS</Filter>
+      <Filter>소스 파일\백준기초편\5-2. BFS</Filter>
     </ClCompile>
     <ClCompile Include="13549.숨바꼭질 3_덱.cpp">
-      <Filter>소스 파일\5-2. BFS</Filter>
+      <Filter>소스 파일\백준기초편\5-2. BFS</Filter>
     </ClCompile>
     <ClCompile Include="1261.알고 스팟.cpp">
-      <Filter>소스 파일\5-2. BFS</Filter>
+      <Filter>소스 파일\백준기초편\5-2. BFS</Filter>
     </ClCompile>
     <ClCompile Include="4375.1.cpp">
-      <Filter>소스 파일\1. 수학</Filter>
+      <Filter>소스 파일\백준기초편\1. 수학</Filter>
     </ClCompile>
     <ClCompile Include="2309.일곱 난장이.cpp">
-      <Filter>소스 파일\3. 브루트포스\기본</Filter>
+      <Filter>소스 파일\백준기초편\기본</Filter>
     </ClCompile>
     <ClCompile Include="3085.사탕 게임.cpp">
-      <Filter>소스 파일\3. 브루트포스\기본</Filter>
+      <Filter>소스 파일\백준기초편\기본</Filter>
     </ClCompile>
     <ClCompile Include="3번.cpp">
       <Filter>소스 파일\코딩 테스트 복기\LG전자 HE본부</Filter>
     </ClCompile>
+    <ClCompile Include="2529.부등호.cpp">
+      <Filter>소스 파일\백준연습편\브루트포스\순열</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="10972.이전순열_prev_permutation.cpp">
-      <Filter>소스 파일\3. 브루트포스\순열</Filter>
+      <Filter>소스 파일\백준기초편\순열</Filter>
     </None>
   </ItemGroup>
 </Project>
