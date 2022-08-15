@@ -57,6 +57,9 @@
 #             answer=inx
 #     return answer
 
+# solution fr
+# 1. https://velog.io/@ckstn0778/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-42893%EB%B2%88-%EB%A7%A4%EC%B9%AD-%EC%A0%90%EC%88%98-X-1-Python
+# 2. https://evinfor.tistory.com/31
 import re
 
 def solution(word, pages):
