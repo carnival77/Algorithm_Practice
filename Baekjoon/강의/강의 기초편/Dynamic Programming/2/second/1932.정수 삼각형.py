@@ -3,9 +3,7 @@ n=int(input())
 # d[i][j] = (i,j)에 도착했을 때의 최댓값.
 # d[i][j] = (i-1)층까지의 최댓값에 a[i][j]을 더한 값
 d=[[0]*n for _ in range(n)]
-
 a = [list(map(int,input().split())) for _ in range(n)]
-
 d[0][0] = a[0][0]
 
 for i in range(1,n):
