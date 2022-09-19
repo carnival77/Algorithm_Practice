@@ -13,29 +13,7 @@ PPC
 % 주의! input = sys.stdin.readline 으로 설정하면, 엔터(/n)도 같이 입력되니 주의
 ex ) [['C', 'C', 'P', '\n'], ['C', 'C', 'P', '\n'], ['P', 'P', 'C', '\n']]
 
-# 1차원 배열 시계/반시계 방향 회전
-
-# 시계 방향 회전
-temp = a[i][7]
-for j in range(7, 0, -1):
-    a[i][j] = a[i][j - 1]
-a[i][0] = temp
-
-# 반시계 방향 회전
-temp = a[i][0]
-for j in range(7):
-    a[i][j] = a[i][j + 1]
-a[i][7] = temp
-
-# 우측(시계 방향)으로 k번 rotate
-a = a[-k:] + a[:-k]
-# 좌측(반시계 방향)으로 rotate
-c = c[k:] + c[:k]
-
->>> a = ['a', 'b', 'c', 'd', 'e']
->>> a[  : -1 ]
-['a', 'b', 'c', 'd']
-
+# 리스트 슬라이싱
 1. a[N:M]
 a[N] <= x < a[M]
 a[N] <= x <= a[M-1]
@@ -58,6 +36,28 @@ a[0] <= x <= a[len(a) - 1]
 # reverse
 temp = temp[::-1]
 
+# 1차원 배열 시계/반시계 방향 회전
+# 시계 방향 회전
+temp = a[i][7]
+for j in range(7, 0, -1):
+    a[i][j] = a[i][j - 1]
+a[i][0] = temp
+
+# 반시계 방향 회전
+temp = a[i][0]
+for j in range(7):
+    a[i][j] = a[i][j + 1]
+a[i][7] = temp
+
+# 우측(시계 방향)으로 k번 rotate
+a = a[-k:] + a[:-k]
+# 좌측(반시계 방향)으로 rotate
+c = c[k:] + c[:k]
+
+>>> a = ['a', 'b', 'c', 'd', 'e']
+>>> a[  : -1 ]
+['a', 'b', 'c', 'd']
+
 # 줄바꿈 없이 출력
 print("안녕하세요", end=' ')
 
@@ -68,7 +68,8 @@ print("안녕하세요", end=' ')
 '구분자'.join(리스트)를 이용하면 리스트의 값과 값 사이에 '구분자'에 들어온 구분자를 넣어서 하나의 문자열로 합쳐줍니다.
 '_'.join(['a', 'b', 'c']) 라 하면 "a_b_c" 와 같은 형태로 문자열을 만들어서 반환해 줍니다.
 
-# 배열 90도 회전
+#직사각형 매트릭스 조작
+# 배열 시계방향 90도 회전
 def rotated(a):
   n = len(a)
   m = len(a[0])
@@ -79,6 +80,128 @@ def rotated(a):
     for j in range(m):
       result[j][n-i-1] = a[i][j]
   return result
+
+# 정사각형 매트릭스 조작
+# 매트릭스 상하반전
+def op1(a):
+    n=len(a)
+    b=[[0] * n for _ in range(n)]
+
+    for i in range(n):
+        for j in range(n):
+            b[i][j] = a[n-1-i][j]
+
+    return b
+
+# 부분 매트릭스를 한 칸으로 생각하고 매트릭스 전체 상하반전.
+def op5(a):
+    global size
+    # 부분 칸 개수
+    sub_cnt = size//sub_size
+    ans = list([0] * size for _ in range(size))
+
+    for i in range(sub_cnt):
+        for j in range(sub_cnt):
+            # 기존 상하반전 식의 b[i][j] = a[n-1-i][j] 과 같이 적용하여, 칸 간의 상하반전
+            x1=i*sub_size
+            y1=j*sub_size
+            x2=(sub_cnt-1-i)*sub_size
+            y2=j*sub_size
+            for x in range(sub_size):
+                for y in range(sub_size):
+                    ans[x1+x][y1+y] = a[x2+x][y2+y]
+
+    return ans
+
+# 매트릭스 좌우반전
+def op2(a):
+    n=len(a)
+    b=[[0] * n for _ in range(n)]
+
+    for i in range(n):
+        for j in range(n):
+            b[i][j] = a[i][n-j-1]
+
+    return b
+
+# 부분 매트릭스를 한 칸으로 생각하고 매트릭스 전체 좌우반전.
+def op6(a):
+    global size
+    sub_cnt = size // sub_size
+    ans = list([0] * size for _ in range(size))
+
+    for i in range(sub_cnt):
+        for j in range(sub_cnt):
+            # 기존 좌우반전 식의 b[i][j] = a[i][n-j-1] 과 같이 적용하여, 칸 간의 좌우반전
+            x1 = i * sub_size
+            y1 = j * sub_size
+            x2 = i * sub_size
+            y2 = (sub_cnt - 1 - j) * sub_size
+            for x in range(sub_size):
+                for y in range(sub_size):
+                    ans[x1 + x][y1 + y] = a[x2 + x][y2 + y]
+
+    return ans
+
+# 매트릭스 시계방향 90도 회전
+def op3(a):
+    n = len(a)
+    b = [[0] * n for _ in range(n)]
+
+    for i in range(n):
+        for j in range(n):
+            b[i][j] = a[n-1-j][i]
+
+    return b
+
+# 부분 매트릭스를 한 칸으로 생각하고 매트릭스 시계방향 90도 회전.
+def op7(a):
+    global size
+    sub_cnt = size // sub_size
+    ans = list([0] * size for _ in range(size))
+
+    for i in range(sub_cnt):
+        for j in range(sub_cnt):
+            # 기존 좌우반전 식의 b[i][j] = a[n-1-j][i] 과 같이 적용하여, 칸 간의 우측 90도 회전
+            x1 = i * sub_size
+            y1 = j * sub_size
+            x2 = (sub_cnt - 1 - j) * sub_size
+            y2 = i * sub_size
+            for x in range(sub_size):
+                for y in range(sub_size):
+                    ans[x1 + x][y1 + y] = a[x2 + x][y2 + y]
+
+    return ans
+
+# 매트릭스 반시계방향 90도 회전
+def op4(a):
+    n = len(a)
+    b = [[0] * n for _ in range(n)]
+
+    for i in range(n):
+        for j in range(n):
+            b[i][j] = a[j][n-1-i]
+
+    return b
+
+# 부분 매트릭스를 한 칸으로 생각하고 전체 매트릭스 반시계방향 90도 회전.
+def op8(a):
+    global size
+    sub_cnt = size // sub_size
+    ans = list([0] * size for _ in range(size))
+
+    for i in range(sub_cnt):
+        for j in range(sub_cnt):
+            # 기존 좌우반전 식의 b[i][j] = a[j][n-1-i] 과 같이 적용하여, 칸 간의 좌측 90도 회전
+            x1 = i * sub_size
+            y1 = j * sub_size
+            x2 = j * sub_size
+            y2 = (sub_cnt - 1 - i) * sub_size
+            for x in range(sub_size):
+                for y in range(sub_size):
+                    ans[x1 + x][y1 + y] = a[x2 + x][y2 + y]
+
+    return ans
 
 
 # 상하 반전

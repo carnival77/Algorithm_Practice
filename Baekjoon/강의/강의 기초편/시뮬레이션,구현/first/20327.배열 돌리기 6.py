@@ -8,7 +8,7 @@ a=[list(map(int,input().split())) for _ in range(2**n)]
 
 size =  2**n
 
-# 상하반전
+# 매트릭스 상하반전
 def op1(a):
     n=len(a)
     b=[[0] * n for _ in range(n)]
@@ -19,7 +19,7 @@ def op1(a):
 
     return b
 
-# 부분 배열을 한 칸으로 생각하고 상하반전.
+# 부분 매트릭스를 한 칸으로 생각하고 매트릭스 전체 상하반전.
 def op5(a):
     global size
     # 부분 칸 개수
@@ -39,7 +39,7 @@ def op5(a):
 
     return ans
 
-# 좌우반전
+# 매트릭스 좌우반전
 def op2(a):
     n=len(a)
     b=[[0] * n for _ in range(n)]
@@ -50,7 +50,7 @@ def op2(a):
 
     return b
 
-# 부분 배열을 한 칸으로 생각하고 좌우반전.
+# 부분 매트릭스를 한 칸으로 생각하고 매트릭스 전체 좌우반전.
 def op6(a):
     global size
     sub_cnt = size // sub_size
@@ -69,7 +69,7 @@ def op6(a):
 
     return ans
 
-# 우측 90도 회전
+# 매트릭스 시계방향 90도 회전
 def op3(a):
     n = len(a)
     b = [[0] * n for _ in range(n)]
@@ -80,7 +80,7 @@ def op3(a):
 
     return b
 
-# 부분 배열을 한 칸으로 생각하고 우측 90도 회전.
+# 부분 매트릭스를 한 칸으로 생각하고 매트릭스 시계방향 90도 회전.
 def op7(a):
     global size
     sub_cnt = size // sub_size
@@ -99,7 +99,7 @@ def op7(a):
 
     return ans
 
-# 좌측 90도 회전
+# 매트릭스 반시계방향 90도 회전
 def op4(a):
     n = len(a)
     b = [[0] * n for _ in range(n)]
@@ -110,7 +110,7 @@ def op4(a):
 
     return b
 
-# 부분 배열을 한 칸으로 생각하고 좌측 90도 회전.
+# 부분 매트릭스를 한 칸으로 생각하고 전체 매트릭스 반시계방향 90도 회전.
 def op8(a):
     global size
     sub_cnt = size // sub_size
