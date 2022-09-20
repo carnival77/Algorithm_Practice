@@ -41,6 +41,9 @@
 
 # solution 2. 배열을 그룹 짓고 요소 rotate 후 다시 넣기
 # rotate는 시간복잡도가 O(k)로, 회전횟수만큼의 시간복잡도만을 가진다.
+# 그룹의 개수는 K=min(n,m)//2 다. 5x5 등으로 홀수일 경우, 가운데 1개는 돌지 않기에 회전 전과 후의 변화가 없다.
+# 그룹별 요소는 윗줄, 오른쪽 줄, 아랫줄, 왼쪽 줄 순서로 큐에 담겨 회전된다.
+# 수식은 위의 순서대로 a[k][j](k<=j<m-k), a[i][m-k-1](k<=i<n-k), a[n-k-1][j](k<=j<m-k), a[i][k](k<=i<n-k) 이다.
 from collections import deque
 
 n,m,R = map(int,input().split())

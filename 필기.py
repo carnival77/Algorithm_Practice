@@ -78,7 +78,7 @@ def rotated(a):
 
   for i in range(n):
     for j in range(m):
-      result[j][n-i-1] = a[i][j]
+      result[i][j] = a[n-1-j][i]
   return result
 
 # 정사각형 매트릭스 조작
@@ -173,7 +173,7 @@ def op7(a):
 
     return ans
 
-# 매트릭스 반시계방향 90도 회전
+# 매트릭스 반시계방향 90도 회전 = 시계방향 90도로 3번 회전
 def op4(a):
     n = len(a)
     b = [[0] * n for _ in range(n)]
