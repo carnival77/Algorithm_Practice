@@ -2,4 +2,4 @@
 /.idea
 /venv/
 /실전_코딩테스트/
-temp.py
+!/temp.py
