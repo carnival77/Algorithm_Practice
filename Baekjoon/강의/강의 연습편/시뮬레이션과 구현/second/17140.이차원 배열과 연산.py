@@ -1,3 +1,5 @@
+# C연산은 배열을 transpose 한 후 R연산을 적용 후 transpose 한 것과 같다.
+
 import sys
 
 r, c, k = map(int, input().split())
