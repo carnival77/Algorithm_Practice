@@ -38,3 +38,5 @@ def dfs(inx):
         ans.pop()
 
 dfs(0)
+
+# 참고 풀이 : https://injae-kim.github.io/problem_solving/2020/02/22/baekjoon-1248.html
