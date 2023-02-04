@@ -6,7 +6,7 @@ m = int(input())
 # 2차원 리스트(그래프 표현)를 만들고, 모든 값을 무한으로 초기화
 graph = [[INF] * (n+1) for _ in range(n+1)]
 
-# 자기 자신에게 자기 자신으로 가는 비용은 0으로 초기화
+# 자기 자신에서 자기 자신으로 가는 비용은 0으로 초기화
 for a in range(1,n+1):
     for b in range(1,n+1):
         if a==b:
