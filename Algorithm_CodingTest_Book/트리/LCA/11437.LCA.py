@@ -33,20 +33,20 @@ def bfs(node):
         count+=1 # 방문한 트리 노드 개수 증가
         if now_size==count: # 현재 깊이의 모든 노드 방문했으면
             count=0 # count 초기화
-            now_size=len(q)
+            now_size=len(q) # 방문할 트리 노드 개수
             level+=1 # 현재 depth 1 증가
 
 bfs(1)
 
 # LCA 함수 구현
 def executeLCA(a,b):
-    # 1번 노드가 2번 노드보다 depth 가 더 크도록 설정. 1번 노드가 depth 가 더 작으면, 1번 노드와 2번 노드를 교체.
-    if depth[a]<depth[b]:
+    # a 노드가 b 노드보다 depth 가 더 작도록 설정. a 노드가 depth 가 더 크면, a 노드와 b 노드를 교체.
+    if depth[a]>depth[b]:
         a,b=b,a
 
-    # 두 노드의 depth를 동일하게 맞추기(높이가 맞을 때까지 a를 부모 노드로 변경)
+    # 두 노드의 depth를 동일하게 맞추기(높이가 맞을 때까지 b를 부모 노드로 변경)
     while depth[a]!=depth[b]:
-        a=parent[a]
+        b=parent[b]
 
     # 공통 조상 찾기. 두 노드의 공통 조상이 나올 때까지 각 노드를 부모 노드로 변경 반복
     while a!=b:
