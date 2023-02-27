@@ -30,18 +30,18 @@ def dijkstra(start):
         # 가장 최단 거리가 짧은 노드에 대한 정보 꺼내기
         dist, now = heapq.heappop(q)
 
-        # 현재 노드가 이미 처리된 노드라면 무시
+        # 노드까지의 거리가 이미 현재까지의 최단 거리로 갱신되어 있는 상태, 즉 현재 노드가 이미 처리된 노드라면 무시
         if distance[now] < dist:
             continue
 
         # 현재 노드와 연결된 다른 인접 노드를 확인
-        for i in graph[now]:
-            cost = dist + i[1]
+        for near_node_num,near_node_cost in graph[now]:
+            cost=dist+near_node_cost # 현재 노드를 거친 후 인접 노드까지의 거리 = 확인 중인 노드까지의 거리 + 확인 중인 노드와 인접한 노드와의 거리
 
             # 현재 노드를 거쳐 다른 노드로 이동하는 거리가 더 짧은 경우
-            if cost < distance[i[0]]:
-                distance[i[0]] = cost
-                heapq.heappush(q,(cost,i[0]))
+            if cost<distance[near_node_num]:
+                distance[near_node_num]=cost
+                heapq.heappush(q,(cost,near_node_num))
 
 # start 번호의 노드부터 다익스트라 알고리즘 수행
 dijkstra(start)
