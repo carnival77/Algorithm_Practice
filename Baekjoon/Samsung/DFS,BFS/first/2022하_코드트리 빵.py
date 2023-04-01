@@ -41,6 +41,7 @@ def bfs1(x,y,ex,ey):
     q.append(start)
     d=[[-1]*n for _ in range(n)]
     d[x][y]=0
+
     while q:
         x,y=q.popleft()
         for k in range(4):
