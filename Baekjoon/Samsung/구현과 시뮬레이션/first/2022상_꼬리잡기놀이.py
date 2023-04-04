@@ -1,20 +1,14 @@
 import sys
-from collections import deque
 input=sys.stdin.readline
 
 n,m,r=map(int,input().split())
 board=[list(map(int,input().split())) for _ in range(n)]
-tboard=[[-1]*n for _ in range(n)]
+tboard=[[-1]*n for _ in range(n)] # 팀별 번호 및 위치 상태 보드
 visit=[[False]*n for _ in range(n)]
 ans=0
 
-class Team:
-    def __init__(self,no,cnt,head=None,tail=None):
-        self.no=no
-        self.cnt=cnt
-        self.head=head
-        self.tail=tail
-teams=[]
+teams=[[] for _ in range(m)] # 팀별 머리사람부터 시작하는 칸 위치 배열
+team_cnt=[0]*m # 팀별 팀원 수
 
 dx=[-1,0,1,0]
 dy=[0,1,0,-1]
@@ -22,179 +16,132 @@ dy=[0,1,0,-1]
 def inBoard(nx,ny):
     return 0<=nx<n and 0<=ny<n
 
-def classify(x,y,team):
-    global board
+def dfs(x,y,tno):
 
-    if board[x][y]==1:
-        team.head=[x,y]
-    elif board[x][y]==3:
-        team.tail=[x,y]
-    return team
-
-def bfs(sx,sy):
-    global board,tboard,visit,teams
-
-    q=deque()
-    q.append([sx,sy])
-    visit[sx][sy]=True
-    no=len(teams)
-    team=Team(no,1)
-    team=classify(sx,sy,team)
-    tboard[sx][sy]=no
-
-    while q:
-        x,y=q.popleft()
-        for k in range(4):
-            nx,ny=x+dx[k],y+dy[k]
-            if inBoard(nx,ny):
-                if board[nx][ny]!=0 and not visit[nx][ny]:
-                    visit[nx][ny]=True
-                    q.append([nx,ny])
-                    tboard[nx][ny]=no
-                    team=classify(nx,ny,team)
-                    if 1<=board[nx][ny]<=3:
-                        team.cnt += 1
-
-    return team
-
-def move(team,a):
-    first=team.head
-    x,y=first
-    moved=None
-    b=[[-1]*n for _ in range(n)]
+    visit[x][y]=True
+    tboard[x][y]=tno
     for k in range(4):
         nx,ny=x+dx[k],y+dy[k]
-        if not inBoard(nx,ny): continue
-        if 3<=a[nx][ny]<=4:
-            b[nx][ny]=a[x][y]
-            # a[x][y]=4
-            team.head=[nx,ny]
-            moved=[x,y]
-        elif a[nx][ny]==2:
-            first=[nx,ny]
+        if not inBoard(nx,ny):
+            continue
+        # 이미 지나간 경로거나 경로가 아니면 넘어갑니다.
+        if board[nx][ny]==0 or visit[nx][ny]:
+            continue
 
-    for _ in range(team.cnt-1):
-        fx,fy=first
-        mx,my=moved
-        b[mx][my]=a[fx][fy]
-        # a[mx][my]=4
-        if first==team.tail:
-            a[fx][fy]=4
-            team.tail=moved
-            break
-        moved = first
-        for k in range(4):
-            nx,ny=fx+dx[k],fy+dy[k]
-            if not inBoard(nx,ny):continue
-            # if 2<=a[nx][ny]<=3:
-            if (nx,ny)!=(mx,my) and a[nx][ny]!=0:
-                first=[nx,ny]
-        # moved = first
+        # 가장 처음 탐색할 때 2가 있는 방향으로 dfs를 진행합니다.
+        # 머리사람 하나만 있고 다음 칸이 일반 사람이 아니면 넘어간다.
+        if len(teams[tno]) == 1 and board[nx][ny] != 2:
+            continue
 
-    for x in range(n):
+        teams[tno].append([nx,ny])
+        if board[nx][ny]==3:
+            team_cnt[tno]=len(teams[tno])
+        dfs(nx,ny,tno)
+
+# 포인트 합산
+def calculate(x,y):
+
+    tno=tboard[x][y]
+    dist=teams[tno].index([x,y])+1
+    return dist**2
+
+# 공 던지고 포인트 획득
+def cycle(inx,a,kind):
+    global ans
+
+    if kind==1:
+        row = inx % n
         for y in range(n):
-            if b[x][y]!=-1:
-                a[x][y]=b[x][y]
+            if 1 <= a[row][y] <= 3:
+                ans += calculate(row, y)
+                return tboard[row][y]
 
-    return [team,a]
+    elif kind==2:
+        col = inx % n
+        for x in range(n - 1, -1, -1):
+            if 1 <= a[x][col] <= 3:
+                ans += calculate(x, col)
+                return tboard[x][col]
 
-def bfs2(sx,sy,a):
-    q=deque()
-    q.append([sx,sy])
-    d=[[-1]*n for _ in range(n)]
-    d[sx][sy]=1
+    elif kind==3:
+        row = (n - 1) - inx % n
+        for y in range(n - 1, -1, -1):
+            if 1 <= a[row][y] <= 3:
+                ans += calculate(row, y)
+                return tboard[row][y]
 
-    while q:
-        x,y=q.popleft()
-        for k in range(4):
-            nx,ny=x+dx[k],y+dy[k]
-            if not inBoard(nx,ny):continue
-            if 1<=a[nx][ny]<=3:
-                d[nx][ny]=d[x][y]+1
-                if a[nx][ny]==1:
-                    return (d[nx][ny])**2
-                elif a[nx][ny]==2:
-                    q.append([nx,ny])
-
-def calculate(x,y,a):
-    global tboard,teams
-    if a[x][y]==1:
-        return 1
-    elif a[x][y]==3:
-        no=tboard[x][y]
-        team=teams[no]
-        return team.cnt**2
     else:
-        return bfs2(x,y,a)
+        col = (n - 1) - inx % n
+        for x in range(n):
+            if 1 <= a[x][col] <= 3:
+                ans += calculate(x, col)
+                return tboard[x][col]
 
-def changeHeadTail(x,y):
-    global tboard,teams,board
-    no=tboard[x][y]
-    team=teams[no]
-    hx,hy=team.head
-    tx,ty=team.tail
-    board[hx][hy],board[tx][ty]=board[tx][ty],board[hx][hy]
-    team.head,team.tail=team.tail,team.head
-    teams[no]=team
+    # 공이 그대로 지나간다면 -1을 반환합니다.
+    return -1
 
-def cycle1n(inx,a):
-    global ans
-    row=inx%n
-    for y in range(n):
-        if 1<=a[row][y]<=3:
-            ans += calculate(row, y, a)
-            changeHeadTail(row, y)
-            break
+# 보드에서 팀 이동 적용
+def change_board():
+    for tno in range(m):
+        for j,[x,y] in enumerate(teams[tno]):
+            if j==0:
+                board[x][y]=1
+            elif j<team_cnt[tno]-1:
+                board[x][y]=2
+            elif j==team_cnt[tno]-1:
+                board[x][y]=3
+            else:
+                board[x][y]=4
 
-def cycle2n(inx,a):
-    global ans
-    col=inx%n
-    for x in range(n-1,-1,-1):
-        if 1<=a[x][col]<=3:
-            ans += calculate(x, col, a)
-            changeHeadTail(x, col)
-            break
+# 각 팀을 이동시키는 함수
+def move_all():
+    global teams,board,team_cnt
 
-def cycle3n(inx,a):
-    global ans
-    row=(n-1)-inx%n
-    for y in range(n-1,-1,-1):
-        if 1<=a[row][y]<=3:
-            ans += calculate(row, y, a)
-            changeHeadTail(row, y)
-            break
+    for tno in range(m):
+        # 각 팀에 대해 레일을 한 칸씩 뒤로 이동시킨다. 즉 맨 뒤 레일을 맨 앞으로 가져온다. 이것은 머리사람을 따라 한 칸 이동한 것과 같다.
+        teams[tno]=[teams[tno][-1]]+teams[tno][:-1]
 
-def cycle4n(inx,a):
-    global ans
-    col=(n-1)-inx%n
-    for x in range(n):
-        if 1<=a[x][col]<=3:
-            ans += calculate(x, col, a)
-            changeHeadTail(x, col)
-            break
+    change_board()
 
+def reverse(tno):
+    if tno==-1:
+        return
+
+    cnt=team_cnt[tno]
+    teams[tno]=teams[tno][:cnt][::-1]+teams[tno][cnt:][::-1]
+
+    change_board()
+
+# 각 팀별 레일 위치 배열 저장. 머리사람 위치부터 시작.
+i=0
 for x in range(n):
     for y in range(n):
-        if board[x][y]!=0 and not visit[x][y]:
-            team=bfs(x,y)
-            teams.append(team)
+        if board[x][y]==1:
+            teams[i].append([x,y])
+            i+=1
+
+# dfs를 통해 머리사람 위치 이후의 레일을 배열에 순서대로 삽입.
+for i in range(m):
+    x,y=teams[i][0]
+    dfs(x,y,i)
 
 cnt=1
 inx=1
 
 while cnt<=r:
-    # 팀 이동
-    for team in teams:
-        team,board=move(team,board)
+    # 각 팀을 머리사람을 따라 한 칸씩 이동
+    move_all()
     # 공 던지기 및 점수 획득
     if 1<=inx<=n:
-        cycle1n(inx-1,board)
+        tno=cycle(inx-1,board,1)
     elif n+1<=inx<=2*n:
-        cycle2n(inx-1,board)
+        tno=cycle(inx-1,board,2)
     elif 2*n+1<=inx<=3*n:
-        cycle3n(inx-1,board)
+        tno=cycle(inx-1,board,3)
     else:
-        cycle4n(inx-1,board)
+        tno=cycle(inx-1,board,4)
+    # 공을 획득한 팀의 방향을 바꿉니다.
+    reverse(tno)
     inx+=1
     cnt+=1
     if inx>4*n:
