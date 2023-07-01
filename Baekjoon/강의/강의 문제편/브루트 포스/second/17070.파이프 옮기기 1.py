@@ -5,11 +5,6 @@ n=int(input())
 a=[list(map(int,input().split())) for _ in range(n)]
 ans=0
 
-def inBoard(nx,ny):
-    if 0<=nx<n and 0<=ny<n:
-        return True
-    return False
-
 def dfs(x,y,d):
     global ans
 
