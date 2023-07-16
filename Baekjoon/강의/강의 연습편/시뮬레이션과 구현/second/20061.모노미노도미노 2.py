@@ -9,65 +9,36 @@ startInx=4
 endInx=9
 
 # 다음 칸에 블록이 이동 가능한 지
-def check(nx,ny,kind):
-    if kind==0:
-        if nx>=endInx or g[nx+1][ny]!=0:
-            return False
-    else:
-        if ny>=endInx or b[nx][ny+1]!=0:
-            return False
+def check(nx,ny,t):
+    if nx>endInx or ny>endInx or t[nx][ny]!=0:
+        return False
     return True
 
 # 블록 개별 이동.
 # 블록을 놓을 위치를 빨간색 보드에서 선택하면, 그 위치부터 초록색 보드로 블록이 이동하고, 파란색 보드로 블록이 이동한다.
 # 블록의 이동은 다른 블록을 만나거나 보드의 경계를 만나기 전까지 계속해서 이동한다.
-def move(arr,kind):
-    global g,b
-
-    if kind==0:
-        if len(arr)==1:
-            sx,sy=arr[0]
-            nx=sx+1
-            ny=sy
-            while check(nx,ny,0):
-                nx+=1
-            g[nx][ny]=1
-        else:
-            sx1,sy1=arr[0]
-            sx2,sy2=arr[1]
-            nx1=sx1+1
-            ny1=sy1
-            nx2=sx2+1
-            ny2=sy2
-            while check(nx1,ny1,0) and check(nx2,ny2,0):
-                nx1+=1
-                nx2+=1
-            g[nx1][ny1]=1
-            g[nx2][ny2]=1
+def move(arr,t):
+    if len(arr)==1:
+        sx,sy=arr[0]
+        nx=sx
+        ny=sy
+        while check(nx+1,ny,t):
+            nx+=1
+        t[nx][ny]=1
     else:
-        if len(arr)==1:
-            sx,sy=arr[0]
-            nx=sx
-            ny=sy+1
-            while check(nx,ny,1):
-                ny+=1
-            b[nx][ny]=1
-        else:
-            sx1,sy1=arr[0]
-            sx2,sy2=arr[1]
-            nx1=sx1
-            ny1=sy1+1
-            nx2=sx2
-            ny2=sy2+1
-            while check(nx1,ny1,1) and check(nx2,ny2,1):
-                ny1+=1
-                ny2+=1
-            b[nx1][ny1]=1
-            b[nx2][ny2]=1
+        sx1,sy1=arr[0]
+        sx2,sy2=arr[1]
+        nx1=sx1
+        ny1=sy1
+        nx2=sx2
+        ny2=sy2
+        while check(nx1+1,ny1,t) and check(nx2+1,ny2,t):
+            nx1+=1
+            nx2+=1
+        t[nx1][ny1]=1
+        t[nx2][ny2]=1
 
-def lay(arr):
-    move(arr,0)
-    move(arr,1)
+    return t
 
 # 초록색 보드에서 어떤 행이 타일로 가득 차 있다면, 그 행의 타일은 모두 사라진다.
 # 사라진 이후에는 초록색 보드에서 사라진 행의 위에 있는 블록이 사라진 행의 수만큼 아래로 이동한다.
@@ -119,11 +90,14 @@ for _ in range(n):
 
     # 블록 놓기
     if t==1:
-        lay([[x,y]])
+        g=move([[x,y]],g)
+        b=transpose(move([[y,x]],transpose(b)))
     elif t==2:
-        lay([[x,y],[x,y+1]])
+        g=move([[x,y],[x,y+1]],g)
+        b=transpose(move([[y,x],[y+1,x]],transpose(b)))
     else:
-        lay([[x,y],[x+1,y]])
+        g = move([[x,y],[x+1,y]], g)
+        b = transpose(move([[y, x], [y, x+1]], transpose(b)))
 
     # 행이나 열이 타일로 가득찬 경우와 연한 칸에 블록이 있는 경우가 동시에 발생할 수 있다.
     # 이 경우에는 행이나 열이 타일로 가득 찬 경우가 없을 때까지 점수를 획득하는 과정이 모두 진행된 후,
