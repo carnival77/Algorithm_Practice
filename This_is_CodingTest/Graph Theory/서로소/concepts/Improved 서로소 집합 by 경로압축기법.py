@@ -2,7 +2,7 @@
 def find_parent(parent,x):
     # 특정 원소의 부모가, 스스로 부모인 루트 노드가 아니면, 부모가 있다는 뜻이므로, 부모 노드로 루트 노드를 찾아 더 이상 부모를 찾을 수 없을 때까지 재귀 호출한다.
     if parent[x]!=x:
-        parent[x]=find_parent(parent,x)
+        parent[x] = find_parent(parent,parent[x])
     return parent[x]
 
 # 두 원소가 속한 집합을 합친다.
