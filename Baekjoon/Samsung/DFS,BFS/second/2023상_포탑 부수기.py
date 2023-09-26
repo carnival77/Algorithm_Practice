@@ -58,11 +58,6 @@ def select(t):
     ex=cand[-1][-2]-ey
     c[sx][sy]=c[ex][ey]=True
 
-# def inBoard(nx,ny):
-#     if 0<=nx<n and 0<=ny<m:
-#         return True
-#     return False
-
 def beyondBoundary(nx,ny):
     if nx < 0:
         nx = n - 1
