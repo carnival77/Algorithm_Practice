@@ -1,5 +1,6 @@
 import sys
 from collections import deque
+from itertools import combinations
 input=sys.stdin.readline
 
 MAX=sys.maxsize
@@ -8,8 +9,8 @@ ans=0
 
 a=[list(map(int,input().split())) for _ in range(n)] # 보드
 g=[[0]*n for _ in range(n)] # 그룹 리스트
-gnum=[] # 그룹을 이루고 있는 숫자 값 리스트
-gcnt=[] # 그룹에 속한 칸의 수 리스트
+gnum=[None] # 그룹을 이루고 있는 숫자 값 리스트
+gcnt=[None] # 그룹에 속한 칸의 수 리스트
 near=[] # 그룹 간 인접 정보
 gn=0 # 그룹 개수
 
@@ -21,13 +22,13 @@ def inBoard(nx,ny):
         return True
     return False
 
-def bfs1(sx,sy,num,visit):
+def bfs1(sx,sy,num,gn,visit):
     global gcnt,g
 
     q=deque()
     q.append((sx,sy))
     visit[sx][sy]=True
-    g[sx][sy]=num
+    g[sx][sy]=gn
     cnt=1
 
     while q:
@@ -39,7 +40,7 @@ def bfs1(sx,sy,num,visit):
                 q.append((nx,ny))
                 visit[nx][ny]=True
                 cnt+=1
-                g[nx][ny]=num
+                g[nx][ny]=gn
 
     gcnt.append(cnt)
     return visit
@@ -54,29 +55,37 @@ def groupCheck():
             num=a[x][y]
             gnum.append(num)
             gn+=1
-            visit=bfs1(x,y,num,visit)
+            visit=bfs1(x,y,num,gn,visit)
 
 def nearCheck():
     global near
 
-    near=[[0]*gn for _ in range(gn)]
+    near=[[0]*(gn+1) for _ in range(gn+1)]
 
     for x in range(n):
         for y in range(n):
             g1=g[x][y]
             for k in range(4):
                 nx,ny=x+dx[k],y+dy[k]
-                if inBoard(nx,ny) and a[nx][ny]!=g1:
-                    g2=a[nx][ny]
+                if inBoard(nx,ny) and g[nx][ny]!=g1:
+                    g2=g[nx][ny]
                     near[g1][g2]+=1
 
 def getPoint():
     global ans
 
-    for g1 in range(gn):
-        for g2 in range(gn):
-            if near[g1][g2]==0:continue
-            ans+=(gcnt[g1]+gcnt[g2])*gnum[g1]*gnum[g2]*near[g1][g2]
+    arr=[i for i in range(1,gn+1)]
+    cand=[]
+    for comb in combinations(arr,2):
+        g1,g2=comb
+        if near[g1][g2] == 0: continue
+        cand.append([g1,g2])
+
+    points=[]
+    for g1,g2 in cand:
+        point = (gcnt[g1] + gcnt[g2]) * gnum[g1] * gnum[g2] * near[g1][g2]
+        points.append(point)
+    ans += sum(points)
 
 def copyBoard(a):
     return [row[:] for row in a]

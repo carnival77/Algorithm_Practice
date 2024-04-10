@@ -1,20 +1,20 @@
 # (x, y)가 보드 내의 좌표인지 확인하는 함수입니다.
 def inBoard(x, y):
-    return 1 <= x and x <= n and 1 <= y and y <= n
+    if 1<=x<=n and 1<=y<=n:
+        return True
+    return False
 
 n, m, p, c, d = map(int, input().split())
-rudolf = tuple(map(int, input().split()))
+rx,ry = map(int, input().split())
 
 point = [0 for _ in range(p + 1)]
-pos = [(0, 0) for _ in range(p + 1)]
+pos = [[0, 0] for _ in range(p + 1)]
 a = [[0 for _ in range(n + 1)] for _ in range(n + 1)]
 alive = [False for _ in range(p + 1)]
 panic = [0 for _ in range(p + 1)]
 
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
-
-a[rudolf[0]][rudolf[1]] = -1
 
 for _ in range(p):
     id, x, y = tuple(map(int, input().split()))
@@ -28,13 +28,22 @@ for t in range(1, m + 1):
     # 가장 가까운 산타 선택
     cand = []
 
-    # 살아있는 포인트 중 루돌프에 가장 가까운 산타를 찾습니다.
+    # for no in range(1,p+1):
+    #     if not alive[no]:continue
+    #     x,y=pos[no]
+    #     dist = (rx - x) ** 2 + (ry - y) ** 2
+    #     cand.append([dist,x,y,no])
+    #
+    # cand.sort(key=lambda x:(x[0],-x[1],-x[2]))
+    # closestIdx=cand[0][-1]
+
+    # # 살아있는 산타 중 루돌프에 가장 가까운 산타를 찾습니다.
     for i in range(1, p + 1):
         if not alive[i]:
             continue
 
-        currentBest = ((closestX - rudolf[0]) ** 2 + (closestY - rudolf[1]) ** 2, (-closestX, -closestY))
-        currentValue = ((pos[i][0] - rudolf[0]) ** 2 + (pos[i][1] - rudolf[1]) ** 2, (-pos[i][0], -pos[i][1]))
+        currentBest = ((closestX - rx) ** 2 + (closestY - ry) ** 2, (-closestX, -closestY))
+        currentValue = ((pos[i][0] - rx) ** 2 + (pos[i][1] - ry) ** 2, (-pos[i][0], -pos[i][1]))
 
         if currentValue < currentBest:
             closestX, closestY = pos[i]
@@ -42,24 +51,24 @@ for t in range(1, m + 1):
 
     # 가장 가까운 산타의 방향으로 루돌프가 이동합니다.
     if closestIdx:
-        prevRudolf = rudolf
+        prx,pry=rx,ry
         moveX = 0
-        if closestX > rudolf[0]:
+        if closestX > rx:
             moveX = 1
-        elif closestX < rudolf[0]:
+        elif closestX < rx:
             moveX = -1
 
         moveY = 0
-        if closestY > rudolf[1]:
+        if closestY > ry:
             moveY = 1
-        elif closestY < rudolf[1]:
+        elif closestY < ry:
             moveY = -1
 
-        rudolf = (rudolf[0] + moveX, rudolf[1] + moveY)
-        a[prevRudolf[0]][prevRudolf[1]] = 0
+        rx,ry = (rx + moveX, ry + moveY)
+        a[prx][pry] = 0
 
     # 루돌프의 이동으로 충돌한 경우, 산타를 이동시키고 처리를 합니다.
-    if rudolf[0] == closestX and rudolf[1] == closestY:
+    if rx == closestX and ry == closestY:
         # 산타는 루돌프가 이동해온 방향으로 C 칸 만큼 밀려나게 됩니다.
         firstX = closestX + moveX * c
         firstY = closestY + moveY * c
@@ -106,7 +115,7 @@ for t in range(1, m + 1):
             alive[closestIdx] = False
 
     # 루돌프 이동 위치 업데이트
-    a[rudolf[0]][rudolf[1]] = -1
+    a[rx][ry] = -1
 
     # 각 산타들은 루돌프와 가장 가까운 방향으로 한칸 이동합니다.
     for i in range(1, p+1):
@@ -115,7 +124,7 @@ for t in range(1, m + 1):
             continue
 
         # 산타는 루돌프에게 거리가 가장 가까워지는 방향으로 1칸 이동합니다.
-        minDist = (pos[i][0] - rudolf[0])**2 + (pos[i][1] - rudolf[1])**2
+        minDist = (pos[i][0] - rx)**2 + (pos[i][1] - ry)**2
         moveDir = -1
 
         for dir in range(4):
@@ -126,7 +135,7 @@ for t in range(1, m + 1):
             if not inBoard(nx, ny) or a[nx][ny] > 0:
                 continue
 
-            dist = (nx - rudolf[0])**2 + (ny - rudolf[1])**2
+            dist = (nx - rx)**2 + (ny - ry)**2
             if dist < minDist:
                 minDist = dist
                 moveDir = dir
@@ -139,7 +148,7 @@ for t in range(1, m + 1):
             ny = pos[i][1] + dy[moveDir]
 
             # 산타의 이동으로 충돌한 경우, 산타를 이동시키고 처리를 합니다.
-            if nx == rudolf[0] and ny == rudolf[1]:
+            if nx == rx and ny == ry:
                 panic[i] = t + 1
 
                 #  산타는 자신이 이동해온 반대 방향으로 D 칸 만큼 밀려나게 됩니다.
@@ -164,9 +173,6 @@ for t in range(1, m + 1):
                     while not (lastX == firstX and lastY == firstY):
                         beforeX = lastX - moveX
                         beforeY = lastY - moveY
-
-                        # if not inBoard(beforeX, beforeY):
-                        #     break
 
                         idx = a[beforeX][beforeY]
 
