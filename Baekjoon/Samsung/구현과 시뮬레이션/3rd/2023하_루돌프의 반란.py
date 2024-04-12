@@ -156,8 +156,11 @@ def smove():
 
         for k in range(4):
             nx,ny=x+dx[k],y+dy[k]
+            # 산타는 다른 산타가 있는 칸이나 게임판 밖으로는 움직일 수 없습니다.
             if not inBoard(nx,ny) or a[nx][ny]>0: continue
             dist=(rx-nx)**2+(ry-ny)**2
+            # 움직일 수 있는 칸이 없다면 산타는 움직이지 않습니다.
+            # 움직일 수 있는 칸이 있더라도 만약 루돌프로부터 가까워질 수 있는 방법이 없다면 산타는 움직이지 않습니다.
             if mDist>dist:
                 mDist=dist
                 next_sx,next_sy=nx,ny
