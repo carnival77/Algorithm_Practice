@@ -18,18 +18,18 @@ def getExit(x,y,d):
     else:
         return [x,y-1]
 
-
 def inBoard(nx,ny):
     if 0<=nx<n and 0<=ny<m:
         return True
     return False
 
+# 골렘이 어떤 좌표로 이동 가능한 상태인지 확인
 def check(x,y):
-    if not inBoard(x,y):
-        if x<n and 0<=y<m:
+    if not inBoard(x,y): # 좌표가 보드 밖에 위치하면
+        if x<n and 0<=y<m: # 좌표가 위쪽이 뚫린 바구니 같은 공간에 있는지
             return True
-    else:
-        if a[x][y]==0:
+    else: # 좌표가 보드 안에 위치하면
+        if a[x][y]==0: # 다른 골렘이 없는지
             return True
     return False
 
@@ -37,7 +37,7 @@ def check(x,y):
 def move(c,d,no):
     global a
 
-    x,y=-2,c # 골렘 내 중앙의 정령 위치
+    x,y=-2,c # 골렘 내 중앙의 정령 위치. 보드 맨 위에서 두 칸 위인 x==-2 지점부터 내려온다.
     while True:
         # 골렘 수직 이동
         if check(x+2,y) and check(x+1,y-1) and check(x+1,y+1):
@@ -80,6 +80,7 @@ def bfs(sx,sy,no):
             nx,ny=x+dx[k],y+dy[k]
             if not inBoard(nx,ny) or visit[nx][ny] or a[nx][ny]==0:
                 continue
+            # 절댓값이 같은 칸으로 움직이거나, 출구 칸에서 다른 칸으로 이동 가능
             if abs(a[x][y])==abs(a[nx][ny]) or (a[x][y]<0 and abs(a[nx][ny])!=abs(a[x][y])):
                 q.append((nx,ny))
                 visit[nx][ny]=True
