@@ -21,7 +21,6 @@ def getExit(x,y,d):
 
 def inBoard(nx,ny):
     if 0<=nx<n and 0<=ny<m:
-    # if nx<n and 0<=ny<m:
         return True
     return False
 
@@ -33,69 +32,30 @@ def check(x,y):
         if a[x][y]==0:
             return True
     return False
-    # if inBoard(x,y) or a[x][y]==0:
-    #     return True
-    # return False
-
-    # if not (0<=y<m):
-    #     return False
-    # if 0<=x<n:
-    #     if a[x][y]!=0:
-    #         return False
-    # return True
-
-    # if not inBoard(x,y):
-    #     return False
-    # if (0<=x<n and 0<=y<m) and a[x][y]!=0:
-    #     return False
-    # return True
 
 # 골렘 이동
 def move(c,d,no):
     global a
 
-    x,y=-1,c # 골렘 내 중앙의 정령 위치
+    x,y=-2,c # 골렘 내 중앙의 정령 위치
     while True:
         # 골렘 수직 이동
-        # if a[x+2][y]==0 and a[x+1][y-1]==0 and a[x+1][y+1]==0:
         if check(x+2,y) and check(x+1,y-1) and check(x+1,y+1):
             x+=1
         # 골렘 왼쪽 이동
-        # elif a[x+1][y-1]==0 and a[x-1][y-1]==0 and a[x][y-2]==0 and a[x+1][y-2]==0 and a[x+2][y-1]==0:
         elif check(x+1,y-1) and check(x-1,y-1) and check(x,y-2) and check(x+1,y-2) and check(x+2,y-1):
             x+=1
             y-=1
             d=(d-1)%4
-        # elif check(x+1,y-1) and check(x-1,y-1) and check(x,y-2):
-        #     # x+=1
-        #     y-=1
-        #     d=(d-1)%4
-        #     if check(x+2,y) and check(x+1,y-1):
-        #         x+=1
         # 골렘 오른쪽 이동
-        # elif a[x+1][y+1]==0 and a[x-1][y+1]==0 and a[x][y+2]==0 and a[x+1][y+2]==0 and a[x+2][y+1]==0:
         elif check(x+1,y+1) and check(x-1,y+1) and check(x,y+2) and check(x+1,y+2) and check(x+2,y+1):
             x+=1
             y+=1
             d=(d+1)%4
-        # elif check(x+1,y+1) and check(x-1,y+1) and check(x,y+2):
-        #     # x+=1
-        #     y+=1
-        #     d=(d+1)%4
-        #     if check(x+1,y+2) and check(x+2,y+1):
-        #         x+=1
         else:
             break
 
     # 골렘 지도에 표시
-    # if a[x][y]==0 and a[x+1][y]==0 and a[x-1][y]==0 and a[x][y+1]==0 and a[x][y-1]==0:
-    # if check(x,y) and check(x+1,y) and check(x-1,y) and check(x,y+1) and check(x,y-1):
-    #     a[x][y]=a[x+1][y]=a[x-1][y]=a[x][y+1]=a[x][y-1]=no
-    #     ex, ey = getExit(x, y, d)# 출구 위치
-    #     a[ex][ey]=-no
-    #     return [True,x,y]
-    # else:
-    #     return [False,-1,-1]
     if not inBoard(x, y) or not inBoard(x + 1, y) or not inBoard(x-1,y) or not inBoard(x,y+1) or not inBoard(x,y-1):
         return [False, -1, -1]
     else:
@@ -113,8 +73,6 @@ def bfs(sx,sy,no):
     q.append((sx,sy))
     visit=[[False]*m for _ in range(n)]
     visit[sx][sy]=True
-    # visit_no=set()
-    # visit_no.add(no)
 
     while q:
         x,y=q.popleft()
@@ -123,19 +81,9 @@ def bfs(sx,sy,no):
             if not inBoard(nx,ny) or visit[nx][ny] or a[nx][ny]==0:
                 continue
             if abs(a[x][y])==abs(a[nx][ny]) or (a[x][y]<0 and abs(a[nx][ny])!=abs(a[x][y])):
-            # if a[nx][ny]==no or a[nx][ny]==-no:
-            # if a[nx][ny] in visit_no or -a[nx][ny] in visit_no:
                 q.append((nx,ny))
                 visit[nx][ny]=True
                 cand.append(nx)
-                # continue
-            # if a[x][y]==-no and a[nx][ny]!=0 and a[nx][ny]!=no and a[nx][ny] not in visit_no:
-            # if a[x][y]<0 and a[nx][ny]!=0 and a[nx][ny]!=abs(a[x][y]):
-            #     q.append((nx,ny))
-            #     visit[nx][ny]=True
-            #     cand.append(nx)
-                # no=abs(a[nx][ny])
-                # visit_no.add(no)
 
     cand.sort(reverse=True)
     point=cand[0]+1
