@@ -1,3 +1,5 @@
+# 시간복잡도 : O(n*m^2 = 100*100^2 = 1,000,000 = 약 1백만)
+
 n, m, K = map(int, input().split())
 a = [[0]*m for _ in range(n)]
 molds=[None]*(K+1)
@@ -86,9 +88,6 @@ def process():
         if molds[no] is None: continue
         mold=molds[no]
         x, y,s,d,b = mold.x,mold.y,mold.s,mold.d,mold.b
-        if s == 0:
-            tmp[x][y]=no
-            continue
         nx, ny, nd = get_next_pos(x, y, d, s)
         mold.x,mold.y,mold.d=nx,ny,nd
         if tmp[nx][ny]==0:
