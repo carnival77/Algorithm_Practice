@@ -1,3 +1,4 @@
+# 시간복잡도 : 100*100*100 = 1,000,000
 from collections import Counter
 
 r,c,K=map(int,input().split())
