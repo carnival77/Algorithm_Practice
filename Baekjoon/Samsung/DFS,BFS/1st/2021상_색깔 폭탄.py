@@ -1,6 +1,6 @@
-import sys
+# 시간복잡도 : O(n^4*m) = 20^4*m = 약 80만
+
 from collections import deque
-input=sys.stdin.readline
 
 n,m=map(int,input().split())
 # 0은 빈칸, -1은 해당 칸에 검은색 돌이, 6은 빨간색 폭탄이, 1이상 m이하의 숫자는 빨간색과는 다른 서로 다른 색의 폭탄이 들어가 있음
@@ -13,13 +13,6 @@ for x in range(n):
     for y in range(n):
         if a[x][y]==0:
             a[x][y]=6
-
-redPos=[]
-
-for x in range(n):
-    for y in range(n):
-        if a[x][y]==6:
-            redPos.append([x,y])
 
 dx=[-1,0,1,0]
 dy=[0,1,0,-1]
@@ -82,15 +75,15 @@ def find():
     cand=[] # 폭탄 묶음 후보
     visit = [[False] * n for _ in range(n)]
 
-    # 폭탄 묶음이란 2개 이상의 폭탄으로 이루어져 있어야 하며,
     for no in range(1,m+1):
         for x in range(n):
             for y in range(n):
                 if a[x][y]==no and not visit[x][y]:
                     total,red,tx,ty,group,cnt=bfs(x,y,no)
+                    # 폭탄 묶음이란 2개 이상의 폭탄으로 이루어져 있어야 하며, 빨간색 폭탄으로만 이루어져 있는 경우는 올바른 폭탄 묶음이 아니며
                     if total>=2 and cnt>=1:
                         cand.append([total,red,tx,ty,group])
-                    visit=restoreRed(visit)
+                    visit=restoreRed(visit) # 빨간색 폭탄은 다른 폭탄 묶음 탐색 중에도 포함되도록 방문 여부 복구
     # 크기가 가장 큰 폭탄 묶음이라는 것은, 가장 많은 수의 폭탄들로 이루어진 폭탄 묶음을 의미합니다.
     # 만약 크기가 큰 폭탄 묶음이 여러 개라면 다음 우선순위에 따라 폭탄 묶음을 선택합니다.
     # (1) 크기가 큰 폭탄 묶음들 중 빨간색 폭탄이 가장 적게 포함된 것 부터 선택합니다.
@@ -131,6 +124,14 @@ def rotateCounterclockwise(a):
 # 더 이상 폭탄 묶음이 없을 때까지 계속 반복하려 합니다.
 while True:
     round+=1
+
+    # 빨간색 폭탄 위치 찾기
+    redPos = []
+
+    for x in range(n):
+        for y in range(n):
+            if a[x][y] == 6:
+                redPos.append([x, y])
     # 폭탄 묶음 찾기. 없으면 중지
     group=find()
     if group is None:
