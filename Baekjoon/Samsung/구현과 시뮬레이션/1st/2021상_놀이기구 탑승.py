@@ -1,3 +1,5 @@
+# 시간 복잡도 = O(n^4) = 약 80만
+
 n=int(input())
 
 a=[[0]*n for _ in range(n)]
