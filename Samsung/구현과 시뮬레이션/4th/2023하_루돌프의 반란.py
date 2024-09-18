@@ -36,17 +36,17 @@ def interaction(sx,sy,xdir,ydir):
     global tmp,pos
 
     q=deque()
-    q.append((sx,sy))
+    q.append((sx,sy)) # 이번 산타 넣기
 
     while q:
-        x,y=q.popleft()
+        x,y=q.popleft() # 이번 산타가
         no=a[x][y]
-        nx,ny=x+xdir,y+ydir
-        if inBoard(nx,ny):
-            tmp[nx][ny]=no
-            if a[nx][ny]>0:
-                q.append((nx,ny))
-        else:
+        nx,ny=x+xdir,y+ydir # 다음 방향으로 움직일 때
+        if inBoard(nx,ny): # 격자 내이면
+            tmp[nx][ny]=no # 움직일 맵에 저장
+            if a[nx][ny]>0: # 다른 산타가 존재하면
+                q.append((nx,ny)) # 큐에 삽입
+        else: # 격자 밖이면 탈락
             pos[no]=None
 
 def crash(sx,sy,xdir,ydir,kind):
@@ -54,7 +54,7 @@ def crash(sx,sy,xdir,ydir,kind):
 
     no=a[sx][sy]
     a[sx][sy]=0
-    tmp=[[0]*n for _ in range(n)]
+    tmp=[[0]*n for _ in range(n)] # 산타가 움직일 칸 저장
     ok=False
 
     if kind==1:
@@ -65,12 +65,12 @@ def crash(sx,sy,xdir,ydir,kind):
     point[no]+=z
     panic[no]=turn+1
     nx,ny=sx+xdir*z,sy+ydir*z
-    if not inBoard(nx,ny):
+    if not inBoard(nx,ny): # 움직일 칸이 격자 밖이면 탈락
         pos[no]=None
     else:
-        ok=True
+        ok=True # 움직일 칸에 저장된 내용 맵에 반영 필요
         tmp[nx][ny]=no
-        if a[nx][ny]>0:
+        if a[nx][ny]>0: # 움직일 칸에 다른 산타가 있으면 방향 그대로 갖고 상호작용
             interaction(nx,ny,xdir,ydir)
 
     if ok:
@@ -89,7 +89,7 @@ def move1():
     for no in range(1,m+1):
         if pos[no] is None:continue
         x,y=pos[no]
-        dist=getDistance(x,y,rx,ry)
+        dist=getDistance(x,y,rx,ry) # 모든 산타들이 위치한 칸에서 현재의 루돌프가 위치한 칸에서 가장 거리가 가까운 칸 구하기
         cand.append([dist,x,y])
 
     cand.sort(key=lambda x:(x[0],-x[1],-x[2]))
@@ -101,15 +101,17 @@ def move1():
         xdir=dx[k]
         ydir=dy[k]
         nx,ny=rx+xdir,ry+ydir
-        dist=getDistance(nx,ny,tx,ty)
+        dist=getDistance(nx,ny,tx,ty) # 이동하고 난 다음 칸에서 대상 산타가 있는 칸까지의 거리가 가까우면 후보에 넣기
         cand.append([dist,[nx,ny],[xdir,ydir]])
 
     cand.sort()
     nx,ny=cand[0][-2]
     xdir,ydir=cand[0][-1]
 
+    # 이동할 칸에 산타 있으면 충돌
     if a[nx][ny]>0:
         crash(nx,ny,xdir,ydir,1)
+    # 루돌프는 그 칸으로 이동
     rx,ry=nx,ny
 
 def check():
@@ -122,6 +124,7 @@ def check():
 def move2():
     global pos,a
 
+    # 산타는 번호순으로 움직인다
     for no in range(1,m+1):
         if panic[no]>=turn or pos[no] is None:continue
         x,y=pos[no]
@@ -131,9 +134,9 @@ def move2():
             xdir=dx[k]
             ydir=dy[k]
             nx,ny=x+xdir,y+ydir
-            if not inBoard(nx,ny) or a[nx][ny]>0:continue
+            if not inBoard(nx,ny) or a[nx][ny]>0:continue # 격자 밖이거나 다른 산타가 존재하는 경우는 제외
             dist=getDistance(nx,ny,rx,ry)
-            if minDist>dist:
+            if minDist>dist: # 현재 있는 칸에서 루돌프가 있는 칸까지의 거리보다 이동할 다음 칸에서 루돌프가 있는 칸까지의 거리가 가까우면(거리 값이 작으면)
                 cand.append([dist,k,[nx,ny],[xdir,ydir]])
 
         if len(cand)>0:
@@ -144,6 +147,7 @@ def move2():
             a[nx][ny]=no
             pos[no]=[nx,ny]
 
+            # 움직일 칸에 루돌프 존재하면, 반대 방향 좌표와 함께 다음 칸으로 이동
             if (nx,ny)==(rx,ry):
                 crash(nx,ny,-xdir,-ydir,2)
 
