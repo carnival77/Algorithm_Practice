@@ -26,15 +26,11 @@ def bfs(sx,sy,a):
         i,j=q.popleft()
         for k in range(4):
             nx,ny=i+dx[k],j+dy[k]
-            # if inBoard(nx,ny) and dist[nx][ny]==-1 and a[nx][ny]<a[i][j]:
+            # 격자 내이고 높은 곳에서 낮은 곳으로 이동 가능하면
             if inBoard(nx,ny) and a[nx][ny]<a[i][j]:
                 q.append((nx,ny))
                 dist[nx][ny]=dist[i][j]+1
                 longest=max(longest,dist[nx][ny])
-
-    # for i in range(n):
-    #     for j in range(n):
-    #         longest=max(longest,dist[i][j])
 
     return longest
 
@@ -59,11 +55,11 @@ for t in range(1, T + 1):
     # 2차원 맵 탐색하며
     for x in range(n):
         for y in range(n):
-            # 한 곳씩 1~m만큼 깎아보기
+            # 한 곳씩 0~m만큼 깎아보기
             for z in range(m+1):
+                # 만약 깎은 결과가 음수인 경우는 제외
                 if a[x][y]-z<0:continue
                 a[x][y]-=z
-                # flag1=0
                 # 가장 높은 봉우리에서
                 for sx,sy in high:
                     # 최대 길이 등산로 찾기
