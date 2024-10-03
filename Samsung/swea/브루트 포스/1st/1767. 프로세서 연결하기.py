@@ -75,7 +75,7 @@ for t in range(1, T + 1):
                 cores.append([x,y])
 
     core_cnt=len(cores)
-    dfs(a,0,0,0) # 코어 (0~n-1)번부터 n-1번까지 연결 시도
+    dfs(a,0,0,0) # 코어 0번부터 n-1번까지 연결 시도
 
     cand.sort(key=lambda x:(-x[0],x[1])) # 코어 개수순 내림차순, 전선 길이 순 오름차순 정렬
     tot_cnt,ans=cand[0]
