@@ -1,3 +1,5 @@
+# 약 1시간 풀이. 이전 풀이 참고 O
+
 n=int(input())
 m=int(input())
 s=input()
