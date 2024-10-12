@@ -1,3 +1,6 @@
+# [풀이 시간]
+# 2회 : 약 1시간
+
 a=list(input())
 b=list(input())
 ans=0
