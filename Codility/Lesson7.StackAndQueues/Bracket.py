@@ -1,3 +1,8 @@
+"""
+아이디어: 스택으로 여는 괄호 푸시, 닫는 괄호 만나면 매칭 검사
+시간: O(N), 공간: O(N)
+"""
+
 def solution(S):
     arr=list(S)
     N = len(arr)
